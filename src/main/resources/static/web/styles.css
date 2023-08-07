@@ -1,0 +1,86 @@
+[v-cloak] {
+    display: none;
+}
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+*{
+    font-family: 'Oxygen', sans-serif !important;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --colorBlue: #131C44;
+    --colorWhite: #FFFFFF;
+    --colorLigthBlue: #dedeff;
+    --colorLigthBlue2: #3F51B5;
+    --colorLigthBlue3:#757de8;
+}
+.logo{
+    height: 6rem;
+    width: 6rem;
+}
+header {
+    background-color: var(--colorBlue)!important;
+
+}
+
+nav{
+    background-color: var(--colorBlue)!important;
+}
+.nav-link{
+    color: var(--colorBlue)!important;
+}
+form{
+    background-color: #dedeff;
+    padding: 1rem;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid;
+    border-color: var(--colorBlue);
+    text-align: left;
+    padding: 8px;
+}
+thead{
+    background-color: var(--colorBlue);
+    color: #FFFFFF;
+}
+tr:nth-child(even) {
+    background-color: var(--colorLigthBlue);
+}
+.btn{
+    background-color: var(--colorLigthBlue3);
+    border-color: var(--colorBlue)!important;
+    border: 1px solid;
+    color:#FFFFFF;
+}
+.text{
+    text-align: center;
+}
+footer{
+    height: 10vh!important;
+    color: var(--colorWhite);
+    background-color: var(--colorBlue);
+    text-align: center;
+}
+.carousel-item{
+    height: 30rem;
+}
+.card{
+    background: rgb(24,22,59);
+    background: linear-gradient(113deg, rgba(24,22,59,1) 0%, rgba(110,230,255,1) 100%);
+    color: var(--colorWhite);
+
+}
+@media only screen and (min-width:320px) and (max-width:767px) {
+    .carousel-item{
+        height: 20%;
+    }
+}
