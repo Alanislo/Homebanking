@@ -35,18 +35,28 @@ public class MindhubhomeApplication {
 			Client client1 = new Client("Melba", "Morel","melbax@gmail.com");
 			client1.addAccount(account2);
 			client1.addAccount(account1);
-			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "papas");
-			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "chupetines");
-			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "chocolates");
+			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "loan");
+			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "loan");
+			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "rent");
+//			cliente 2
+			Transaction transaction4 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "mum");
+			Transaction transaction5 = new Transaction(this.dateTime1, 200, TransactionType.DEBIT, "shopping");
+			Transaction transaction6 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "petShop");
 			account1.addtransactionSet(transaction1);
 			account1.addtransactionSet(transaction2);
 			account1.addtransactionSet(transaction3);
+			account2.addtransactionSet(transaction4);
+			account2.addtransactionSet(transaction5);
+			account2.addtransactionSet(transaction6);
 			repositoryclient.save(client1);
 			repositoryaccount.save(account1);
 			repositoryaccount.save(account2);
 			repositorytransaction.save(transaction1);
 			repositorytransaction.save(transaction2);
 			repositorytransaction.save(transaction3);
+			repositorytransaction.save(transaction4);
+			repositorytransaction.save(transaction5);
+			repositorytransaction.save(transaction6);
 
 		};
 	}
