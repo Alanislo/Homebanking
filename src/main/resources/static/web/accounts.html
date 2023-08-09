@@ -67,10 +67,10 @@
 
   <!-- End Navbar -->
 
-  <div><img src="./images/1.jpg" alt=""></div>
+  
   <!--- Start Content --->
   <main id="app" class=" container ">
-
+    <div class="img"><img class="img" src="./images/1.jpg" alt=""></div>
     <div class=" mb-5 mt-5">
       <template v-if="clients.length > 0 " v-for="client of clients">
         <h2>Bienvenida, {{client.firstName}}!</h2>
@@ -85,9 +85,14 @@
             <p class="card-subtitle mb-2">{{account.creationDate}}</p>
             <template v-if="clients.length > 0 " v-for="client of clients">
               <p>{{client.firstName}} {{client.lastName}}</p>
+             
             </template>
           </div>
         </div>
+      
+          <a :href="'./account.html?id=' + account.id">See more</a>
+
+
       </template>
     </div>
 

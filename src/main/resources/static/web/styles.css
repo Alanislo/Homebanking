@@ -77,3 +77,12 @@ footer{
     color: var(--colorWhite);
 
 }
+
+.img{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height:27rem!important;
+    object-fit: cover;
+    width: 100%;
+}

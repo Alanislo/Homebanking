@@ -18,35 +18,33 @@ public class AccountDTO {
 
     }
     public AccountDTO(Account account) {
-
         this.id = account.getId();
         this.number = account.getNumber();
         this.creationDate = account.getCreationDate();
         this.balance = account.getBalance();
-
+        this.transactionSet = new HashSet<>();
+        for (Transaction transaction: account.getTransactionSet()) {
+            this.transactionSet.add(new TransactionDTO(transaction));
+        }
     }
 
     public long getId() {
         return id;
     }
 
-
     public String getNumber() {
         return number;
     }
-
-
 
     public LocalDate getCreationDate() {
         return creationDate;
     }
 
-
-
     public double getBalance() {
         return balance;
     }
 
-
-
+    public Set<TransactionDTO> getTransactionSet() {
+        return transactionSet;
+    }
 }

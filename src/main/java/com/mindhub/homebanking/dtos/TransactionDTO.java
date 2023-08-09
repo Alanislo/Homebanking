@@ -15,15 +15,19 @@ public class TransactionDTO{
     private TransactionType type;
     private Account account;
 
+    private String description;
     public TransactionDTO() {
     }
+
+
 
     public TransactionDTO(Transaction transaction) {
         this.id = transaction.getId();
         this.dateTime = transaction.getDateTime();
         this.amount = transaction.getAmount();
         this.type = transaction.getType();
-        this.account = transaction.getAccount();
+        this.description= transaction.getDescription();
+
     }
 
     public long getId() {
@@ -42,7 +46,7 @@ public class TransactionDTO{
         return type;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getDescription() {
+        return description;
     }
 }

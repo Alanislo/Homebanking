@@ -33,7 +33,7 @@ public class Account {
     }
 
     // cuando creo una nueva cuenta llamo a este metodo
-    public Account(String number, LocalDate creationDate, double balance) {
+    public Account(  String number, LocalDate creationDate, double balance) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
@@ -84,5 +84,18 @@ public class Account {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void addtransactionSet( Transaction transaction){
+        transaction.setAccount(this);
+        this.transactionSet.add(transaction);
+    }
+
+    public Set<Transaction> getTransactionSet() {
+        return transactionSet;
+    }
+
+    public void setTransactionSet(Set<Transaction> transactionSet) {
+        this.transactionSet = transactionSet;
     }
 }
