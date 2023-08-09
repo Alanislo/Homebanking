@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity // le dice a Spring que cree una  tabla de Cuentas  para esta clase.
 public class Account {
@@ -23,6 +25,8 @@ public class Account {
     @JoinColumn(name="client_id")
     private Client client;
 
+    @OneToMany(mappedBy = "account", fetch=FetchType.EAGER)
+    private Set<Transaction> transactionSet= new HashSet<>();
 
     // se crea un constructor vacio para que se inicie el objeto sin devolver valores. Eso es lo que JPA llamará para crear nuevas instancias.
     public Account() {
