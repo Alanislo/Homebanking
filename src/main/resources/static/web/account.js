@@ -4,6 +4,7 @@ const options = {
         return {
             accountSet: [],
             transactionSet: [],
+            transactionCredit: []
         }
     },
     created() {
@@ -20,7 +21,16 @@ const options = {
                     this.accountSet = response.data
                     this.transactionSet = this.accountSet.transactionSet
                     console.log(this.transactionSet);
-                   
+                    for(const transaction of this.transactionSet){
+                        const aux = {
+                             transaction : transaction.type
+                        }
+                        this.transactionCredit.push(aux)
+                        console.log(aux);
+                        
+                       
+                      }
+                      this.transactionSet.sort((a,b) => b.id - a.id)
                  
                 })
                 .catch(error => console.log(error))

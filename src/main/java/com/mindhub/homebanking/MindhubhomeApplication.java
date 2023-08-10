@@ -39,7 +39,7 @@ public class MindhubhomeApplication {
 			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "loan");
 			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "rent");
 //			cliente 2
-			Transaction transaction4 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "mum");
+			Transaction transaction4 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "loan");
 			Transaction transaction5 = new Transaction(this.dateTime1, 200, TransactionType.DEBIT, "shopping");
 			Transaction transaction6 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "petShop");
 			account1.addtransactionSet(transaction1);
