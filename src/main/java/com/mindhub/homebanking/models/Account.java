@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity // le dice a Spring que cree una  tabla de Cuentas  para esta clase.
+@Entity
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    //le indican a JPA que use cualquier generador de ID proporcionado por el sistema de base de datos.
+
     @GenericGenerator(name = "native", strategy = "native")
 
     private long id;

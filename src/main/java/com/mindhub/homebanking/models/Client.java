@@ -1,18 +1,22 @@
 package com.mindhub.homebanking.models;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Entity // hace la de la clase una entidad para jpa
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
+@Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native") // genera el id de manera automatica
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-    private long id;// identificador en la base de datos
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,6 +25,9 @@ public class Client {
     private Set<Account> accountSet= new HashSet<>();
     public Client() {
     }
+
+    @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     public Client( String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -71,5 +78,14 @@ public class Client {
         account.setClient(this);
         accountSet.add(account);
     }
+    @JsonIgnore
+    public Set<Loan> getLoans() {
+        return clientLoans.stream().map(ClientLoan::getLoan).collect(toSet());
+    }
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
 
-}
+    }
+    }
+
