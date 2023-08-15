@@ -28,18 +28,14 @@ public class Account {
     @OneToMany(mappedBy = "account", fetch=FetchType.EAGER)
     private Set<Transaction> transactionSet= new HashSet<>();
 
-    // se crea un constructor vacio para que se inicie el objeto sin devolver valores. Eso es lo que JPA llamará para crear nuevas instancias.
     public Account() {
     }
 
-    // cuando creo una nueva cuenta llamo a este metodo
     public Account(  String number, LocalDate creationDate, double balance) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
     }
-    // el get id si lo manipulo
-
     public long getId() {
         return id;
     }

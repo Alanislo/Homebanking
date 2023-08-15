@@ -4,7 +4,8 @@ const {createApp} = Vue
         return{
             clients: [],
             clientsAccounts:[],
-            accountSet:[]
+            loans:[]
+          
         }
     },
     created(){
@@ -12,21 +13,15 @@ const {createApp} = Vue
     },
     methods:{
         loadData(){
-            axios.get("http://localhost:8080/api/clients")
+            axios.get("http://localhost:8080/api/clients/1")
             .then( response => {
               this.clients = response.data
-              this.clientsAccounts = this.clients[0].accountSet
+              console.log(response.data);
+              this.clientsAccounts = this.clients.accountSet
+              this.loans = this.clients.clientLoans
               console.log(this.clientsAccounts);
-              console.log(this.clients);
-              for(const account of this.clientsAccounts){
-                const aux = {
-                     number : account.number,
-                     creationDate : account.creationDate,
-                     balance : account.balance
-                }
-                this.accountSet.push (aux)
-                console.log(aux);
-              }
+              console.log(this.loans);
+             
             })
             .catch(error => console.log(error))
         }

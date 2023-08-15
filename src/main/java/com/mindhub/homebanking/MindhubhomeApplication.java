@@ -62,11 +62,11 @@ public class MindhubhomeApplication {
 
 
 
-			ClientLoan loan1 = new ClientLoan(400000,60);
-			ClientLoan loan2 = new ClientLoan(50000,12);
+			ClientLoan loan1 = new ClientLoan("Mortgage",400000,60);
+			ClientLoan loan2 = new ClientLoan("Personal", 50000,12);
 
-			ClientLoan loan3 = new ClientLoan(100000, 24);
-			ClientLoan loan4 = new ClientLoan(200000, 36);
+			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
+			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);

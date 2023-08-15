@@ -16,9 +16,10 @@ const options = {
             const params = new URLSearchParams(queryString);
             const id = params.get("id");
             console.log(id);
-            axios.get("http://localhost:8080/api/accounts/" + id)
+            axios.get("/api/accounts/" + id)
                 .then(response => {
                     this.accountSet = response.data
+                    console.log(this.accountSet);
                     this.transactionSet = this.accountSet.transactionSet
                     console.log(this.transactionSet);
                     for(const transaction of this.transactionSet){
