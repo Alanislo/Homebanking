@@ -2,7 +2,7 @@ package com.mindhub.homebanking.dtos;
 
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
+import com.mindhub.homebanking.models.enums.TransactionType;
 
 import java.time.LocalDateTime;
 
@@ -18,8 +18,6 @@ public class TransactionDTO{
     private String description;
     public TransactionDTO() {
     }
-
-
 
     public TransactionDTO(Transaction transaction) {
         this.id = transaction.getId();

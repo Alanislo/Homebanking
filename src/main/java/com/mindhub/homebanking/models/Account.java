@@ -12,7 +12,6 @@ import java.util.Set;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-
     @GenericGenerator(name = "native", strategy = "native")
 
     private long id;
@@ -31,7 +30,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(  String number, LocalDate creationDate, double balance) {
+    public Account( String number, LocalDate creationDate, double balance) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
@@ -64,16 +63,7 @@ public class Account {
         this.balance = balance;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", number='" + number + '\'' +
-                ", creationDate=" + creationDate +
-                ", balance=" + balance +
-                '}';
-    }
-@JsonIgnore
+    @JsonIgnore
     public Client getClient() {
         return client;
     }
@@ -86,12 +76,20 @@ public class Account {
         transaction.setAccount(this);
         this.transactionSet.add(transaction);
     }
-
     public Set<Transaction> getTransactionSet() {
         return transactionSet;
     }
 
     public void setTransactionSet(Set<Transaction> transactionSet) {
         this.transactionSet = transactionSet;
+    }
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", creationDate=" + creationDate +
+                ", balance=" + balance +
+                '}';
     }
 }

@@ -18,7 +18,6 @@ public class ClientController {
     private ClientRepository clientrepository;
     @RequestMapping("/api/clients")
     public List<ClientDTO> getClients(){
-
         return clientrepository.findAll().stream().map(ClientDTO::new).collect(toList());
     }
     @RequestMapping("/api/clients/{id}")

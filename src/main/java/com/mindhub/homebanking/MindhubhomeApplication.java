@@ -1,13 +1,14 @@
 package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.models.enums.CardType;
+import com.mindhub.homebanking.models.enums.TransactionType;
 import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +17,9 @@ import java.util.List;
 public class MindhubhomeApplication {
 	LocalDate date1 = LocalDate.now();
 	LocalDate date2 = LocalDate.now().plusDays(1);
+
+	LocalDate thruDate1 = LocalDate.now();
+	LocalDate fromDate1 = LocalDate.now().plusYears(5);
 
 	LocalDateTime dateTime1 = LocalDateTime.now();
 
@@ -28,7 +32,7 @@ public class MindhubhomeApplication {
 
 	}
 	@Bean
-	public CommandLineRunner initData(ClientRepository repositoryclient , AccountRepository repositoryaccount, TransactionRepository repositorytransaction, LoanRepository repositoryloan, ClientLoanRepository repositoryclientloan) {
+	public CommandLineRunner initData(ClientRepository repositoryclient , AccountRepository repositoryaccount, TransactionRepository repositorytransaction, LoanRepository repositoryloan, ClientLoanRepository repositoryclientloan, CardRepository repositorycard) {
 		return (args) -> {
 			Account account1 = new Account("VIN001", this.date1 , 5000);
 			Account account2 = new Account("VIN002", this.date2 , 7500);
@@ -60,13 +64,13 @@ public class MindhubhomeApplication {
 			Loan personal1 = new Loan("Personal",100000,personal);
 			Loan automotive1 = new Loan("Automotive",300000,automotive);
 
-
-
 			ClientLoan loan1 = new ClientLoan("Mortgage",400000,60);
 			ClientLoan loan2 = new ClientLoan("Personal", 50000,12);
 
 			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
 			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
+
+			Card card1 = new Card("Melba", CardColor.GOLD, CardType.DEBIT,"3333-4457-3333-7089", (short) 999, this.thruDate1, this.fromDate1);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);
@@ -78,6 +82,8 @@ public class MindhubhomeApplication {
 
 			client2.addClientLoan(loan3);
 			client2.addClientLoan(loan4);
+
+			client1.addCards(card1);
 
 			repositoryloan.save(mortgage1);
 			repositoryloan.save(personal1);
@@ -102,6 +108,7 @@ public class MindhubhomeApplication {
 			repositoryclientloan.save(loan3);
 			repositoryclientloan.save(loan4);
 
+			repositorycard.save(card1);
 
 		};
 	}

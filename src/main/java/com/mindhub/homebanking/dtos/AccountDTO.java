@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 public class AccountDTO {
     private long id;
     private String number;
-
     private LocalDate creationDate;
     private double balance;
     private Set<TransactionDTO> transactionSet= new HashSet<>();
