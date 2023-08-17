@@ -10,8 +10,8 @@ import java.time.LocalDate;
 public class CardDTO {
     private long id;
     private String cardHolder;
-    private CardColor type;
-    private CardType color;
+    private CardColor color;
+    private CardType type;
     private String number;
     private short cvv;
     private LocalDate thruDate;
@@ -31,6 +31,7 @@ public class CardDTO {
        this.fromDate = card.getFromDate();
 
     }
+
     public long getId() {
         return id;
     }
@@ -39,12 +40,12 @@ public class CardDTO {
         return cardHolder;
     }
 
-    public CardColor getType() {
-        return type;
+    public CardColor getColor() {
+        return color;
     }
 
-    public CardType getColor() {
-        return color;
+    public CardType getType() {
+        return type;
     }
 
     public String getNumber() {

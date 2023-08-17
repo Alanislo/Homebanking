@@ -3,9 +3,10 @@ const {createApp} = Vue
     data(){
         return{
             clients: [],
-            clientsAccounts:[],
-            loans:[],
-            date:[]
+            cards:[],
+            cardsDebit:[],
+            cardsCredit:[],
+            thruDate:[],
           
         }
     },
@@ -17,11 +18,12 @@ const {createApp} = Vue
             axios.get("http://localhost:8080/api/clients/1")
             .then( response => {
               this.clients = response.data
-              console.log(response.data);
-              this.clientsAccounts = this.clients.accountSet
-              this.loans = this.clients.clientLoans
-              console.log(this.clientsAccounts);
-              console.log(this.loans);
+              this.cards = this.clients.cards
+              this.cardsDebit= this.cards.filter(card => card.type == 'DEBIT')
+              this.cardsCredit= this.cards.filter(card => card.type == 'CREDIT')
+              this.thruDate = this.cards.map(card => card.thruDate.slice(2,7))
+              console.log(this.cardsDebit);
+              console.log(this.cardsCredit);
              
             })
             .catch(error => console.log(error))

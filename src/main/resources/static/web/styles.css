@@ -15,18 +15,18 @@
     --colorAquamarine2:#028484;
 }
 .logo{
-    height: 5rem;
-    width: 8rem;
+    height: 4rem;
+    width: 7rem;
 }
 nav{
     background-color: var(--colorblue);
     
 }
 .nav-link{
-    letter-spacing: 1px;
+
     text-decoration: none;
     color: white ;
-    font-size: 16px;
+    font-size: 15px;
     position: relative;
 }
 .nav-link:after{
@@ -79,6 +79,7 @@ header{
 
 span{
     font-weight: bold;
+    font-size: 18px;
 }
 table {
     border-collapse: collapse;
@@ -137,10 +138,27 @@ footer{
     height: 3rem;
 }
 
+.bis{
+    fill:#213555;
+    cursor: pointer;
+}
+.name{
+    font-size: 18px;
+}
 
 @media only screen and (min-width:320px) and (max-width:767px) {
    .tabla-transaction{
     font-size: 14px;
    }
 
+}
+.cardGold{
+    background-color: gold;
+}
+.cardSilver{
+    background-color: silver;
+}
+.cardTitanium{
+    background-color: black;
+    
 }

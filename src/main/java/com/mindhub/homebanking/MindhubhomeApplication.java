@@ -70,7 +70,8 @@ public class MindhubhomeApplication {
 			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
 			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
 
-			Card card1 = new Card("Melba", CardColor.GOLD, CardType.DEBIT,"3333-4457-3333-7089", (short) 999, this.thruDate1, this.fromDate1);
+			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", (short) 999, this.thruDate1, this.fromDate1);
+			Card card2 = new Card("Melba", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", (short) 123, this.thruDate1, this.fromDate1);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);
@@ -84,6 +85,7 @@ public class MindhubhomeApplication {
 			client2.addClientLoan(loan4);
 
 			client1.addCards(card1);
+			client1.addCards(card2);
 
 			repositoryloan.save(mortgage1);
 			repositoryloan.save(personal1);
@@ -109,6 +111,7 @@ public class MindhubhomeApplication {
 			repositoryclientloan.save(loan4);
 
 			repositorycard.save(card1);
+			repositorycard.save(card2);
 
 		};
 	}
