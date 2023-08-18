@@ -71,7 +71,7 @@ public class MindhubhomeApplication {
 			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
 
 			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", (short) 999, this.thruDate1, this.fromDate1);
-			Card card2 = new Card("Melba", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", (short) 123, this.thruDate1, this.fromDate1);
+			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", (short) 123, this.thruDate1, this.fromDate1);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);

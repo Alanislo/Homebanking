@@ -58,28 +58,46 @@
     <main  class=" container d-flex justify-content-center flex-column">
      
       <section class=" mb-5 mt-5">
-          <h2 class="centrado">Welcome,</h2>
-          <h4 class="centrado">Cards</h4>
+          <h2 class="centrado">Your Cards</h2>
       </section>
       <div class="d-flex justify-content-around flex-wrap">
-        <div class="d-flex flex-wrap flex-column">
-          <h2>Debit</h2>
-          <template v-if="cardsDebit.length > 0" v-for="card of cardsDebit" >
+        <div class="d-flex flex-column flex-wrap">
+          <h2>Debit:</h2>
+          <template v-if="cardsDebit.length > 0" v-for="(card, index) of cardsDebit" >
             <div class="card mb-3" :class="{'cardGold':card.color == 'GOLD', 'cardTitanium': card.color == 'TITANIUM'}">
-              <div class="card-body">
-                <h5 class="card-title d-flex justify-content-between flex-wrap">{{card.cardHolder}}</h5
-                <p class="card-subtitle mb-2"></p>    
+              <div class="card-body2">
+                <div class="d-flex justify-content-end me-3 mt-1">
+                  <img class="simbolos " src="./images/visa.png" alt="">
+                </div>
+                <div class="d-flex justify-content-start ms-3"> 
+                  <img class="simbolos" src="./images/chip.png" alt="">
+                </div>
+                <p class="card-number mt-1">{{card.number}}</p>
+                <h6 class="card-title d-flex justify-content-between flex-wrap ms-3">{{card.cardHolder}}</h6>
+                <div class="d-flex justify-content-around">
+                  <p>Valid from: {{fromDate[index]}}</p>
+                  <p>Expires end: {{thruDate[index]}}</p>
+                </div>      
               </div>
             </div>
          
           </template>
-          <h2>Credit</h2>
+          <h2>Credit:</h2>
           <template v-if="cardsCredit.length > 0" v-for="(card, index) of cardsCredit" >
             <div class="card mb-3":class="{'cardSilver':card.color == 'SILVER', 'cardTitanium': card.color == 'TITANIUM', 'cardGold': card.color == 'GOLD'}">
-              <div class="card-body">
-                <h5 class="card-title d-flex justify-content-between flex-wrap">{{card.cardHolder}}</h5>
-                <p class="card-subtitle mb-2">{{thruDate[index]}}</p>    
-
+              <div class="card-body2">
+                <div class="d-flex justify-content-end me-3 mt-1">
+                  <img class="simbolos " src="./images/visa.png" alt="">
+                </div>
+                <div class="d-flex justify-content-start ms-3"> 
+                  <img class="simbolos" src="./images/chip.png" alt="">
+                </div>
+                <p class="card-number mt-1">{{card.number}}</p>
+                <h6 class="card-title d-flex justify-content-between flex-wrap ms-3">{{card.cardHolder}}</h6>
+                <div class="d-flex justify-content-around">
+                  <p>Valid from: {{fromDate[index]}}</p>
+                  <p>Expires end: {{thruDate[index]}}</p>
+                </div>           
               </div>
             </div>
       

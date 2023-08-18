@@ -7,6 +7,7 @@ const {createApp} = Vue
             cardsDebit:[],
             cardsCredit:[],
             thruDate:[],
+            fromDate:[],
           
         }
     },
@@ -22,6 +23,7 @@ const {createApp} = Vue
               this.cardsDebit= this.cards.filter(card => card.type == 'DEBIT')
               this.cardsCredit= this.cards.filter(card => card.type == 'CREDIT')
               this.thruDate = this.cards.map(card => card.thruDate.slice(2,7))
+              this.fromDate = this.cards.map(card => card.fromDate.slice(2,7))
               console.log(this.cardsDebit);
               console.log(this.cardsCredit);
              

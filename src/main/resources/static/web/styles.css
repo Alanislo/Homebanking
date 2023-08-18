@@ -7,12 +7,18 @@
     text-decoration: none;
     list-style: none;
 }
-
+body{
+    min-height: 100%;
+}
 :root {
     --colorblue:#050A30;
     --colorBlueLigth:#d4edfc;
     --colorAquaMarine:#2dcccd;
     --colorAquamarine2:#028484;
+    --colorBlu:#213555;
+}
+body{
+    background-color: #edf8ff;
 }
 .logo{
     height: 4rem;
@@ -66,11 +72,12 @@ header{
 }
 .card{
     display: flex;
-    border-radius: 6px;
+    border-radius: 0px;
     overflow: hidden;
     box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
     cursor: pointer;
     transition: all 400ms ease;
+    width: 20rem;
 }
 .card:hover{
     box-shadow: 5px 5px 20px rgba(0, 0, 0,0.4);
@@ -85,7 +92,7 @@ table {
     border-collapse: collapse;
     border: 1px solid #213555;
     background-color: white;
-    color: var(--colorblue);
+    color: var(--colorBlu);
     overflow: hidden;
     box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
     cursor: pointer;
@@ -94,7 +101,7 @@ table {
 
 }
 .table-top{
-    background-color: var(--colorblue);
+    background-color: var(--colorBlu);
     color: white;
 }
 
@@ -117,6 +124,7 @@ td {
     box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
     cursor: pointer;
     transition: all 400ms ease;
+
 }
 .see-more:hover{
     box-shadow: 5px 5px 20px rgba(0, 0, 0,0.4);
@@ -139,11 +147,37 @@ footer{
 }
 
 .bis{
-    fill:#213555;
+    fill:whitesmoke;
     cursor: pointer;
+}
+.biss{
+    fill: var(--colorBlu);
 }
 .name{
     font-size: 18px;
+}
+.card-obj{
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #1464a5;
+    padding: 7px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0,0.1);
+}
+.img-card{
+    width:20rem;
+
+}
+.nav-link2{
+    text-decoration: none;
+    color: var(--colorBlu);
+    display: flex;
+    justify-content: space-between;
+}
+.nav-item2{
+    background-color:white;
+    width: 20rem;
+    padding: 1rem;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
 }
 
 @media only screen and (min-width:320px) and (max-width:767px) {
@@ -153,12 +187,203 @@ footer{
 
 }
 .cardGold{
-    background-color: gold;
+    background-image: url(./images/GOLDEN.png);
+    min-height: 12rem;
+  
 }
 .cardSilver{
-    background-color: silver;
+    background-image: url(./images/SILVER.png);
+    object-fit: contain;
+    min-height: 12rem;
 }
 .cardTitanium{
-    background-color: black;
+    background-image: url(./images/TITANIUM.png);
+    object-fit: contain;
+    color: white!important;
+    min-height: 12rem;
+}
+.card-body2{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+.simbolos{
+    height: 2.5rem;
+}
+.card-number{
+    font-size: 17px;
+    letter-spacing: .3rem;
+}
+.draw-card{
+    height: 10rem;
+}
+.card-help{
+    background-color: #c9ddde;
+    padding: 0.5rem;
+}
+.card2{
+    background-color: white;
+}
+.contenedor {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	transition: all 0.3s ease-out;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	display: block;
+}
+.card-loan{
     
+    background-color: #1973b8;
+}
+.loans{
+    height: 4rem;
+}
+.card-body3{
+    background-color: #1464a5;
+    color:white;
+    padding: 1rem;
+}
+.contenedor-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.contenedor-cards .contenedor-card-item {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	width: 25%;
+	margin: 1%;
+	-webkit-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.contenedor-cards .contenedor-card-item:hover {
+	box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+	-webkit-transform: translateY(-10px);
+	-ms-transform: translateY(-10px);
+	-o-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
+
+.contenedor-card-item-wrapper {
+	overflow: hidden;
+	position: relative !important;
+	background: #3E2723;
+	border-radius: 5px;
+}
+
+.contenedor-card-item img {
+	max-width: 100%;
+	position: relative;
+	top: 0;
+	-webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	border-radius: 5px;
+}
+
+.contenedor-card-item .contenedor-info {
+	position: absolute;
+	width: 100%;
+	height: 70px;
+	bottom: -70px;
+	-webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.contenedor-card-item .contenedor-info .fondo {
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.73) 53%, rgba(0,0,0,0.88) 100%);
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.73) 53%,rgba(0,0,0,0.88) 100%);
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.73) 53%,rgba(0,0,0,0.88) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e0000000',GradientType=0 );
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.contenedor-card-item .contenedor-info .info {
+	color: #fff;
+	position: relative;
+	z-index: 500;
+	padding: 20px 15px;
+}
+
+.contenedor-card-item .contenedor-info .info .titulo {
+  margin: 0;
+  font-size: 20px;
+}
+
+.contenedor-card-item .contenedor-info .info .categoria {
+	display: block;
+	font-size: 10px;
+}
+
+.contenedor-card-item:hover .contenedor-info {
+	bottom: 0;
+}
+
+.contenedor-card-item:hover img {
+	top: -30px;
+	-webkit-transform: rotate(-5deg) scale(2);
+	-ms-transform: rotate(-5deg) scale(2);
+	-o-transform: rotate(-5deg) scale(2);
+	transform: rotate(-5deg) scale(2);
+}
+
+@media screen and (max-width: 900px) {
+	.contenedor-card-item:hover img {
+    top: -30px;
+    -webkit-transform: rotate(-5deg) scale(1.3);
+    -ms-transform: rotate(-5deg) scale(1.3);
+    -o-transform: rotate(-5deg) scale(1.3);
+    transform: rotate(-5deg) scale(1.3);
+  }
+
+	.contenedor-card-item .contenedor-info {
+		bottom: 0;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.contenedor {
+		width: 95%;
+	}
+
+	.contenedor-cards .contenedor-card-item {
+		width: 48%;
+		margin: 1%;
+	}
+}
+
+@media screen and (max-width: 550px) {
+  .contenedor-cards .contenedor-card-item {
+    width: 60%;
+    margin: 10px auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+	.contenedor {
+		width: 90%;
+	}
+  
+  .contenedor-cards .contenedor-card-item {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+	.contenedor {
+		width: 100%;
+	}
 }
