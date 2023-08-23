@@ -28,7 +28,6 @@ const options = {
                         }
                         this.transactionCredit.push(aux)
                         console.log(aux);
-                        
                        
                       }
                       this.transactionSet.sort((a,b) => b.id - a.id)
