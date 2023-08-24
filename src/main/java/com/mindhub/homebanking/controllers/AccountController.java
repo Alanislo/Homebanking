@@ -23,4 +23,5 @@ public class AccountController {
     public AccountDTO getAccount(@PathVariable Long id){
         return accountrepository.findById(id).map(AccountDTO::new).orElse(null);
     }
+
 }

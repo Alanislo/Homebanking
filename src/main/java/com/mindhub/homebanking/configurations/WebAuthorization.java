@@ -29,6 +29,18 @@ public class WebAuthorization {
                 .antMatchers("/web/public/**").hasAuthority("CLIENT");
 
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
         http.formLogin()
 
                 .usernameParameter("email")

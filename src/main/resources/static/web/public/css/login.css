@@ -2,8 +2,6 @@ body {
     font-family: "Lato", sans-serif;
 }
 
-
-
 .main-head{
     height: 150px;
     background: #FFF;
@@ -12,9 +10,10 @@ body {
 
 .sidenav {
     height: 100%;
-    background-color: #000;
-    overflow-x: hidden;
-    padding-top: 20px;
+    background-image: url(../images/cuadro.jpg);
+    display: flex;
+    object-fit: cover;
+    background-repeat: no-repeat;
 }
 
 
@@ -50,7 +49,7 @@ body {
     }
 
     .login-form{
-        margin-top: 80%;
+        margin-top: 60%;
     }
 
     .register-form{
@@ -68,8 +67,17 @@ body {
 .login-main-text h2{
     font-weight: 300;
 }
-
-.btn-black{
-    background-color: #000 !important;
-    color: #fff;
+.boton{
+    background-color: #213555;
+    padding: 6px;
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.btn{
+    background-color: #028484;
+    padding: 3px;
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
 }

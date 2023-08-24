@@ -12,14 +12,15 @@
 
     <div id="app">
             <div class="sidenav">
-                <div class="login-main-text">
-                   <h2>Application<br> Register</h2>
-                   <p>Login or register from here to access.</p>
-                </div>
+               
              </div>
              <div class="main">
                 <div class="col-md-6 col-sm-12">
                    <div class="login-form">
+                     <div class="">
+                        <h2>MINDHUB BROTHERS<br> Register</h2>
+                        <p>Login or register from here to access.</p>
+                     </div>
                       <form v-on:submit.prevent="register">
                         <div class="form-group">
                             <label>First Name</label>
@@ -37,8 +38,11 @@
                             <label>Password</label>
                             <input type="password" id="password" name="password" class="form-control" placeholder="" v-model="password">
                          </div>
-                         <button type="submit" class="btn btn-black" @click="register()">Sign up</button>
-                         <a href="./login.html">login</a>
+                         <div class="d-flex justify-content-around mt-2">
+                           <button type="submit" class="btn" @click="register()">Sign up</button>
+                           <a class="boton" href="./login.html">Log in</a>
+                         </div>
+                        
                       </form>
                       
                    </div>
