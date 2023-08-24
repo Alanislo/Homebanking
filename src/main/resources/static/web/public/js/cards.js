@@ -29,7 +29,15 @@ const {createApp} = Vue
              
             })
             .catch(error => console.log(error))
-        }
+        }, logout() {
+          axios.post(`/api/logout`)
+  
+          .then(response => console.log('signed out!!'))
+              .then
+  
+          return (window.location.href = "/index.html")
+  
+      }
     }
  }
 const app = createApp(options)
