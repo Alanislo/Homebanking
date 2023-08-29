@@ -8,6 +8,7 @@ const {createApp} = Vue
             cardsCredit:[],
             thruDate:[],
             fromDate:[],
+            cvv:null,
           
         }
     },
@@ -24,6 +25,8 @@ const {createApp} = Vue
               this.cardsCredit= this.cards.filter(card => card.type == 'CREDIT')
               this.thruDate = this.cards.map(card => card.thruDate.slice(2,7))
               this.fromDate = this.cards.map(card => card.fromDate.slice(2,7))
+              this.cvv = this.cards
+              console.log(this.cvv);
               console.log(this.cardsDebit);
               console.log(this.cardsCredit);
              
@@ -35,7 +38,7 @@ const {createApp} = Vue
           .then(response => console.log('signed out!!'))
               .then
   
-          return (window.location.href = "/index.html")
+          return (window.location.href = "../../index.html")
   
       }
     }

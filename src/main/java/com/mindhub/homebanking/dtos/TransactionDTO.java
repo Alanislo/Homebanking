@@ -4,12 +4,13 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.models.enums.TransactionType;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TransactionDTO{
     private long id;
 
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
     private double amount;
 
     private TransactionType type;
@@ -32,7 +33,7 @@ public class TransactionDTO{
         return id;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDate getDateTime() {
         return dateTime;
     }
 

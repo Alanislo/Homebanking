@@ -32,9 +32,27 @@ const {createApp} = Vue
           .then(response => console.log('signed out!!'))
               .then
   
-          return (window.location.href = "../index.html")
+          return (window.location.href = "../../index.html")
   
-      }
+      },
+      alerta(){
+    let mensaje;
+    let opcion = confirm("Do you want to create a new account?");
+    if (opcion == true) {
+     
+        axios.post("http://localhost:8080/api/clients/current/accounts")
+        .then(response => {
+
+          location.href ="/web/public/pages/accounts.html"}).catch(error => {
+            console.log(error.response);
+            window.alert(error.response.data)
+    })
+      
+	} else {
+	    mensaje = "Cancel";
+	}
+},
+    
     }
  }
 const app = createApp(options)

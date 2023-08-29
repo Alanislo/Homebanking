@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Niramit:wght@300&display=swap');
+:root {
+    --colorBeige: #f6f4eb;
+    --colorLightBlue: #91C8E4;
+    --colorLigthBlue2: #749BC2;
+    --colorBlue: #4682A9;
+}
+*{
+    font-family: 'Niramit', sans-serif!important;
+}
+body {}
+
+.logo {
+    width: 7rem;
+    height: 4rem;
+    object-fit: contain;
+}
+
+.navbar {
+    background-color: var(--colorBlue);
+    padding: 3px;
+}
+
+header {
+    background-color: var(--colorBlue);
+}
+
+.nav-link {
+    color: whitesmoke;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.nav-link {
+
+    text-decoration: none;
+    color: white;
+    font-size: 1.3em;
+    position: relative;
+}
+
+.buttonsi {
+    background: rgb(145, 200, 228);
+    background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);
+    border: rgb(145, 200, 228);
+    border-radius: 0.7rem;
+    padding: 0.5rem;
+    font-size: 1.1em;
+}
+
+.buttonsi:hover {
+    background: rgb(135, 255, 249);
+    background: linear-gradient(324deg, rgba(135, 255, 249, 1) 0%, rgba(74, 112, 150, 1) 100%);
+    border: rgb(135, 255, 249);
+}
+
+.sign {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: whitesmoke;
+    /*animacion de derecha a izquierda*/
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+
+    color: whitesmoke;
+
+}
+.cuadro{
+    object-fit: cover;
+    width: 100%;
+    position:absolute ;
+    top: 80px;
+}
+.nav-link:focus,
+.nav-link:hover {
+    color: whitesmoke;
+}
+
+.nav-link:hover:after {
+    /*animacion de derecha a izquierda*/
+    transform-origin: left;
+    transform: scaleX(1);
+    color: white !important;
+}
+.login-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--colorLightBlue);
+    padding: 1rem;
+}
+.boton{
+    background-color: #213555;
+    padding: 6px;
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.btn{
+    background-color: #028484;
+    padding: 3px;
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
+}

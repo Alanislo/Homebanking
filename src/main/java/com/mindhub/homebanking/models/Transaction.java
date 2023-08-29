@@ -4,6 +4,7 @@ import com.mindhub.homebanking.models.enums.TransactionType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 public class Transaction {
@@ -11,7 +12,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
     private double amount;
     private TransactionType type;
     private String description;
@@ -20,7 +21,7 @@ public class Transaction {
     private Account account;
     public Transaction() {
     }
-    public Transaction(LocalDateTime dateTime, double amount, TransactionType type, String description) {
+    public Transaction(LocalDate dateTime, double amount, TransactionType type, String description) {
         this.dateTime = dateTime;
         this.amount = amount;
         this.type = type;
@@ -29,10 +30,10 @@ public class Transaction {
     public long getId() {
         return id;
     }
-    public LocalDateTime getDateTime() {
+    public LocalDate getDateTime() {
         return dateTime;
     }
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
     public double getAmount() {

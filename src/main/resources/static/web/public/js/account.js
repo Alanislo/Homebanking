@@ -16,7 +16,7 @@ const options = {
             const params = new URLSearchParams(queryString);
             const id = params.get("id");
             console.log(id);
-            axios.get("/api/accounts/" + id)
+            axios.get("/api/clients/accounts/" + id)
                 .then(response => {
                     this.accountSet = response.data
                     console.log(this.accountSet);
@@ -28,7 +28,6 @@ const options = {
                         }
                         this.transactionCredit.push(aux)
                         console.log(aux);
-                       
                       }
                       this.transactionSet.sort((a,b) => b.id - a.id)
                  

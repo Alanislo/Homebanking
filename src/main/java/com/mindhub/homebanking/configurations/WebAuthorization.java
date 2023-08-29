@@ -22,23 +22,17 @@ public class WebAuthorization {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/clients", "/api/login", "/api/logout").permitAll()
-                .antMatchers("/web/index.html", "/web/public/login.html", "/web/public/register.html","/web/public/js/register.js",
-                        "/web/public/css/login.css","/web/public/css/styles.css", "/web/public/js/login.js", "/web/public/images/**").permitAll()
-                .antMatchers("/rest/**", "/h2-console/").hasAuthority("ADMIN")
+                .antMatchers("/web/index.html", "/web/login.html", "/web/register.html","/web/register.js",
+                        "/web/css/login.css","/web/css/styles.css", "/web/login.js", "/web/public/images/**","/web/css/index.css", "/web/index.js", "/web/css/**").permitAll()
+                .antMatchers("/rest/**", "/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers("/web/manager/**", "/api/clients").hasAuthority("ADMIN")
-                .antMatchers("/web/public/**").hasAuthority("CLIENT");
 
+                .antMatchers(HttpMethod.GET,"/api/clients/current/**", "/api/clients/current/cards", "/api/accounts/**",
+                        "/api/clients/accounts/{id}").hasAuthority("CLIENT")
+                .antMatchers("/web/public/pages/**", "/web/public/js/**", "/web/public/js/account.js").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/clients/current/accounts", "/api/clients/current/cards").hasAuthority("CLIENT")
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+                .anyRequest().denyAll();
 
 
         http.formLogin()

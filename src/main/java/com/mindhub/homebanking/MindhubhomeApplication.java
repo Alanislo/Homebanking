@@ -24,7 +24,7 @@ public class MindhubhomeApplication {
 	LocalDate thruDate1 = LocalDate.now();
 	LocalDate fromDate1 = LocalDate.now().plusYears(5);
 
-	LocalDateTime dateTime1 = LocalDateTime.now();
+	LocalDate dateTime1 = LocalDate.now();
 
 	List <Integer> mortgage = List.of(12,24,36,48,60);
 	List <Integer> personal = List.of(6,12,24);
@@ -77,8 +77,8 @@ public class MindhubhomeApplication {
 			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
 			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
 
-			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", (short) 999, this.thruDate1, this.fromDate1);
-			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", (short) 123, this.thruDate1, this.fromDate1);
+			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", 999, this.thruDate1, this.fromDate1);
+			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", 123, this.thruDate1, this.fromDate1);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);

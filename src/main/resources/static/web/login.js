@@ -3,8 +3,8 @@ const {createApp} = Vue
     data(){
         return{
         email:"",
-        password:""
-          
+        password:"",
+        error_msg:""
         }
     },
     methods : {
@@ -22,12 +22,11 @@ const {createApp} = Vue
                 if(this.email=="admin@gmail.com"){
                     return window.location.href ="/web/manager/manager.html"
                 }else{
-                return window.location.href = "/web/public/accounts.html"}
-
+                return window.location.href = "/web/public/pages/accounts.html"}
+                
             }).catch(error => {
                 window.alert("The email or password is incorrect")
-                
-
+                console.log(error);
 
             })
 
