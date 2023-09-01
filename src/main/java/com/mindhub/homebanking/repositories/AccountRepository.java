@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @RepositoryRestResource
 public interface AccountRepository extends JpaRepository <Account,Long>{
-
     Account findByNumber(String random);
 }

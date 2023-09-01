@@ -9,17 +9,13 @@ import java.time.LocalDateTime;
 
 public class TransactionDTO{
     private long id;
-
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
     private double amount;
-
     private TransactionType type;
     private Account account;
-
     private String description;
     public TransactionDTO() {
     }
-
     public TransactionDTO(Transaction transaction) {
         this.id = transaction.getId();
         this.dateTime = transaction.getDateTime();
@@ -28,23 +24,18 @@ public class TransactionDTO{
         this.description= transaction.getDescription();
 
     }
-
     public long getId() {
         return id;
     }
-
-    public LocalDate getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
-
     public double getAmount() {
         return amount;
     }
-
     public TransactionType getType() {
         return type;
     }
-
     public String getDescription() {
         return description;
     }

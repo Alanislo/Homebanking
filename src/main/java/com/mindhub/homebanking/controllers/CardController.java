@@ -1,5 +1,4 @@
 package com.mindhub.homebanking.controllers;
-
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.enums.CardColor;
@@ -13,52 +12,60 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-
+import java.util.stream.Collectors;
+@RequestMapping("/api")
 @RestController
 public class CardController {
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
     private CardRepository cardRepository;
+
     private String randomNumber() {
         String random = "";
         int i;
-        for (i = 0; i < 4; i++){
-            int min = 1000;
-            int max = 8999;
+        int min = 1000;
+        int max = 8999;
+        for (i = 0; i < 3; i++){
             random += (int)(Math.random()*(max - min + 1) + min)+"-";
         }
+        random += (int)(Math.random()*(max - min + 1) + min);
     return random;
     }
     private int randomCvv(){
         int cvv = (int)(Math.random()*899+100);
         return cvv;
     }
-    @PostMapping("/api/clients/current/cards")
-    public ResponseEntity<Object> register( @RequestParam CardType type , @RequestParam CardColor color, Authentication authentication) {
-        Client client = clientRepository.findByEmail(authentication.getName());
-        if (type == null && color == null) {
-            return new ResponseEntity<>("Missing Type", HttpStatus.FORBIDDEN);
+    @PostMapping("/clients/current/cards")
+    public ResponseEntity<Object> register(@RequestParam String type , @RequestParam String color, Authentication authentication) {
+        if( !type.equals("CREDIT") && !type.equals("DEBIT") ){
+            return new ResponseEntity<>("Select the type", HttpStatus.FORBIDDEN);
         }
+
+        if( !color.equals("GOLD") && !color.equals("SILVER") && !color.equals("TITANIUM")){
+            return new ResponseEntity<>("Select the color", HttpStatus.FORBIDDEN);
+        }
+        CardType cardType =  CardType.valueOf(type);
+        CardColor cardColor = CardColor.valueOf(color);
+        Client client = clientRepository.findByEmail(authentication.getName());
+
         String cardNumber = "";
         do {
             cardNumber = randomNumber();
         } while (cardRepository.findByNumber(cardNumber) != null);
-        int cardCvv= 0;
+        int cardCvv = 0;
         do {
-             cardCvv= randomCvv();
-        }while (cardRepository.findByCvv(cardCvv) != null);
-
-        for (Card card: client.getCards()) {
-            if (card.getType().equals(type) && card.getColor().equals(color)){
-                return new ResponseEntity<>("No more cards", HttpStatus.FORBIDDEN);
-            }
-        }
-        Card card = new Card(client.getFirstName()+" "+ client.getLastName(), color, type, cardNumber,  cardCvv, LocalDate.now(), LocalDate.now().plusYears(5));
+            cardCvv = randomCvv();
+        } while (cardRepository.findByCvv(cardCvv) != null);
+        if (!client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
+            return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
+    }
+        Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv, LocalDate.now(), LocalDate.now().plusYears(5));
         client.addCards(card);
         cardRepository.save(card);
         return new ResponseEntity<>("Created a new Card", HttpStatus.CREATED);

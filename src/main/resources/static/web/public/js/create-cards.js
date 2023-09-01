@@ -15,6 +15,7 @@ const {createApp} = Vue
         alerta(){
             let mensaje;
             let opcion = confirm("Do you want to create a new card?");
+            console.log("Hola");
             if (opcion == true) {
              console.log(this.cardType);
              console.log(this.cardColor);

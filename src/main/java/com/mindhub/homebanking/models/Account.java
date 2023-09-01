@@ -79,7 +79,6 @@ public class Account {
     public Set<Transaction> getTransactionSet() {
         return transactionSet;
     }
-
     public void setTransactionSet(Set<Transaction> transactionSet) {
         this.transactionSet = transactionSet;
     }

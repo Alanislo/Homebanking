@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.AccountDTO;
+import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
@@ -16,12 +17,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-
+@RequestMapping("/api")
 @RestController
 public class AccountController {
     @Autowired
      private AccountRepository accountrepository;
-
     @Autowired
     private ClientRepository clientrepository;
     private String randomNumber(){
@@ -32,24 +32,31 @@ public class AccountController {
         }while (accountrepository.findByNumber(random)!=null);
         return  random;
     }
-    @RequestMapping("/api/accounts")
+    @RequestMapping("/accounts")
     public List<AccountDTO> getAccounts() {
         return accountrepository.findAll().stream().map(AccountDTO::new).collect(toList());
     }
-    @RequestMapping("/api/clients/accounts/{id}")
+    @RequestMapping("clients/current/accounts")
+    public List<AccountDTO> getAccounts(Authentication authentication){
+        return new ClientDTO(clientrepository.findByEmail(authentication.getName())).getAccountSet().stream().collect(toList());
+    }
+    @RequestMapping("/clients/accounts/{id}")
     public ResponseEntity<Object> getAccount(@PathVariable Long id, Authentication authentication) {
         Client client = clientrepository.findByEmail(authentication.getName());
         Account account = accountrepository.findById(id).orElse(null);
-        if (client.getId() == account.getClient().getId()) {
+        if (account == null){
+            return new ResponseEntity<>("Account null", HttpStatus.FORBIDDEN);
+        }
+        if (client.getAccount().contains(account)) {// agregar account null
+//            assert account != null;
             return new ResponseEntity<>(new AccountDTO(account), HttpStatus.ACCEPTED);
-        } else {
+        }
+        else {
             return new ResponseEntity<>("Denegated access", HttpStatus.FORBIDDEN);
         }
     }
-    @RequestMapping(path = "/api/clients/current/accounts", method = RequestMethod.POST)
-
+    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> newAccount(Authentication authentication) {
-
         if (clientrepository.findByEmail(authentication.getName()).getAccount().size()<=2) {
             String number = randomNumber();
             Account newAccount = new Account(number, LocalDate.now(), 0);

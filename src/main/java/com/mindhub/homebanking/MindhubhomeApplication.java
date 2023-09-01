@@ -24,7 +24,7 @@ public class MindhubhomeApplication {
 	LocalDate thruDate1 = LocalDate.now();
 	LocalDate fromDate1 = LocalDate.now().plusYears(5);
 
-	LocalDate dateTime1 = LocalDate.now();
+	LocalDateTime dateTime1 = LocalDateTime.now();
 
 	List <Integer> mortgage = List.of(12,24,36,48,60);
 	List <Integer> personal = List.of(6,12,24);
@@ -66,7 +66,7 @@ public class MindhubhomeApplication {
 			account2.addtransactionSet(transaction6);
 			account3.addtransactionSet(transaction7);
 
-			// prestamos
+			// loans
 			Loan mortgage1 = new Loan("Mortgage", 500000, mortgage);
 			Loan personal1 = new Loan("Personal",100000,personal);
 			Loan automotive1 = new Loan("Automotive",300000,automotive);

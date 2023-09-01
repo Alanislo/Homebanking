@@ -63,15 +63,12 @@ public class Client {
     public void setAccount(Set<Account> account) {
         this.accountSet = account;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public Set<Card> getCards() {
         return cards;
     }
@@ -92,7 +89,6 @@ public class Client {
     public void addClientLoan(ClientLoan clientLoan) {
         clientLoan.setClient(this);
         clientLoans.add(clientLoan);
-
     }
     public void addCards(Card card) {
         card.setClient(this);

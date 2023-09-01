@@ -1,5 +1,4 @@
 package com.mindhub.homebanking.configurations;
-
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,42 +13,27 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
-
     ClientRepository clientRepository;
     @Bean
-
     public PasswordEncoder passwordEncoder() {
-
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
     }
     @Override
-
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(email-> {
-
             Client client = clientRepository.findByEmail(email);
-
             if (client != null) {
               if (email.equals("admin@gmail.com")){
                   return new User(client.getEmail(), client.getPassword(),
                           AuthorityUtils.createAuthorityList("ADMIN"));
               }
-                return new User(client.getEmail(), client.getPassword(),
-
+             return new User(client.getEmail(), client.getPassword(),
                         AuthorityUtils.createAuthorityList("CLIENT"));
-
             } else {
-
                 throw new UsernameNotFoundException("Unknown user: " + email);
             }
-
         });
-
     }
-
 }

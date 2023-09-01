@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-
+@RequestMapping("/api")
 @RestController
 public class ClientController {
     @Autowired
@@ -26,32 +26,35 @@ public class ClientController {
     private AccountRepository accountrepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @RequestMapping("/api/clients")
+    @RequestMapping("/clients")
     public List<ClientDTO> getClients(){
         return clientrepository.findAll().stream().map(ClientDTO::new).collect(toList());
     }
-    @RequestMapping("/api/clients/{id}")
+    @RequestMapping("/clients/{id}")
     public ClientDTO getClient(@PathVariable Long id){
         return clientrepository.findById(id).map(ClientDTO::new).orElse(null);
     }
-    @RequestMapping(path = "/api/clients", method = RequestMethod.POST)
-
+    @RequestMapping(path = "/clients", method = RequestMethod.POST)
     public ResponseEntity<Object> register(
-
             @RequestParam String firstName, @RequestParam String lastName,
-
             @RequestParam String email, @RequestParam String password) {
-
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-
-            return new ResponseEntity<>("The entered fields are not valid", HttpStatus.FORBIDDEN);
-
+        if(firstName.isBlank() && email.isBlank() && lastName.isBlank() || password.isBlank()){
+            return new ResponseEntity<>("Do not leave empty fields", HttpStatus.FORBIDDEN);
         }
-
+        if (firstName.isBlank()) {
+            return new ResponseEntity<>("Enter your First Name", HttpStatus.FORBIDDEN);
+        }
+        if (email.isBlank()){
+            return new ResponseEntity<>("Enter your email", HttpStatus.FORBIDDEN);
+        }
+        if (lastName.isBlank()){
+            return new ResponseEntity<>("Enter your Last Name", HttpStatus.FORBIDDEN);
+        }
+        if (password.isBlank()){
+            return new ResponseEntity<>("Enter a password", HttpStatus.FORBIDDEN);
+        }
         if (clientrepository.findByEmail(email) !=  null) {
-
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
-
         }
         Client newClient= new Client(firstName, lastName, email, passwordEncoder.encode(password));
         clientrepository.save(newClient);
@@ -60,7 +63,6 @@ public class ClientController {
         newClient.addAccount(newAccount);
         accountrepository.save(newAccount);
         return new ResponseEntity<>(HttpStatus.CREATED);
-
     }
     private String randomNumber(){
         String random;
@@ -70,12 +72,8 @@ public class ClientController {
         }while (accountrepository.findByNumber(random)!=null);
         return  random;
     }
-
-    @RequestMapping("/api/clients/current")
-
+    @RequestMapping("/clients/current")
     public ClientDTO getClient(Authentication authentication) {
-
         return new ClientDTO(clientrepository.findByEmail(authentication.getName()));
-
     }
 }

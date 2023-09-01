@@ -12,7 +12,6 @@ public class ClientLoanDTO {
     private String name;
     private double amount;
     private Integer payments;
-
     private Set<ClientDTO> clientSet = new HashSet<>();
     public ClientLoanDTO(ClientLoan clientloan) {
 
@@ -29,27 +28,21 @@ public class ClientLoanDTO {
         this.clientSet = new HashSet<>();
 
     }
-
     public long getId() {
         return id;
     }
-
     public long getLoanId() {
         return loanId;
     }
-
     public String getName() {
         return name;
     }
-
     public double getAmount() {
         return amount;
     }
-
     public Integer getPayments() {
         return payments;
     }
-
     public Set<ClientDTO> getClientSet() {
         return clientSet;
     }

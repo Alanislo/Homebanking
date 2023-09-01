@@ -14,7 +14,6 @@ public class AccountDTO {
     private double balance;
     private Set<TransactionDTO> transactionSet= new HashSet<>();
     public AccountDTO(){
-
     }
     public AccountDTO(Account account) {
         this.id = account.getId();
@@ -23,23 +22,18 @@ public class AccountDTO {
         this.balance = account.getBalance();
         this.transactionSet = account.getTransactionSet().stream().map(TransactionDTO::new).collect(Collectors.toSet());
     }
-
     public long getId() {
         return id;
     }
-
     public String getNumber() {
         return number;
     }
-
     public LocalDate getCreationDate() {
         return creationDate;
     }
-
     public double getBalance() {
         return balance;
     }
-
     public Set<TransactionDTO> getTransactionSet() {
         return transactionSet;
     }
