@@ -27,9 +27,9 @@ public class WebAuthorization {
                 .antMatchers("/rest/**", "/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers("/web/manager/**", "/api/clients").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET,"/api/clients/current/**", "/api/clients/current/cards", "/api/accounts/**",
-                        "/api/clients/accounts/{id}").hasAuthority("CLIENT")
+                        "/api/clients/accounts/{id}", "/api/loans" ).hasAuthority("CLIENT")
                 .antMatchers("/web/public/pages/**", "/web/public/js/**", "/web/public/js/account.js").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST,"/api/clients/current/accounts", "/api/clients/current/cards", "/api/transactions").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/clients/current/accounts", "/api/clients/current/cards", "/api/transactions", "/api/loans").hasAuthority("CLIENT")
                 .anyRequest().denyAll();
             http.formLogin()
                 .usernameParameter("email")
@@ -50,6 +50,7 @@ public class WebAuthorization {
             http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
             return http.build();
         }
+
         private void clearAuthenticationAttributes (HttpServletRequest request){
             HttpSession session = request.getSession(false);
             if (session != null) {

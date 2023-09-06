@@ -13,6 +13,7 @@ public class ClientLoan {
     private String name;
     private double amount;
     private Integer payments;
+
     public ClientLoan() {
     }
     public ClientLoan(String name, double amount, Integer payments) {

@@ -8,7 +8,6 @@
 *{
     font-family: 'Niramit', sans-serif!important;
 }
-body {}
 
 .logo {
     width: 7rem;
@@ -77,9 +76,11 @@ header {
     height: 10rem;
 }
 .card-help{
+    font-size: 17px;
     background-color: #c9ddde;
     padding: 0.5rem;
 }
+
 .card{
     display: flex;
     border-radius: 0px;
@@ -95,14 +96,28 @@ header {
 }
 
 span{
-    font-weight: bold;
+    font-weight: bolder;
     font-size: 18px;
 }
-
+.card2{
+    background-color: var(--colorBlue);
+    display: flex;
+    border-radius: 0px;
+    overflow: hidden;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
+    cursor: pointer;
+    transition: all 400ms ease;
+    width: 20rem;
+}
+.card2:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0,0.4);
+    transform: translateY(-3%);
+}
 
 .see-more{
     background-color:var(--colorLigthBlue2);
-    padding: 0.6rem;
+    padding: 0.5rem;
+    font-size: 1.1rem;
     text-decoration: none;
     color: white;
     border-radius: 3px;
@@ -119,8 +134,7 @@ span{
     color: white;
 }
 
-.card-loan{
-    
+.card-loan{ 
     background-color: var(--colorLigthBlue2);
     box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
 }
@@ -158,6 +172,8 @@ span{
 }
 .nav-item2{
     background-color:white;
+    font-weight: bold;
+    font-size: 1.1rem;
     width: 20rem;
     padding: 1rem;
     box-shadow: 0px 1px 10px rgba(0, 0, 0,0.2);
@@ -173,4 +189,20 @@ footer{
     cursor: pointer;
     margin-left: 3px;
     margin-right:3px ;
+}
+.buttonsi {
+    background: rgb(145, 200, 228);
+    background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);
+    border: rgb(145, 200, 228);
+    border-radius: 0.7rem;
+    padding: 0.6rem;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+}
+
+.buttonsi:hover {
+    background: rgb(135, 255, 249);
+    background: linear-gradient(324deg, rgba(135, 255, 249, 1) 0%, rgba(74, 112, 150, 1) 100%);
+    border: rgb(135, 255, 249);
 }

@@ -50,14 +50,14 @@ public class MindhubhomeApplication {
 			client1.addAccount(account1);
 			client2.addAccount(account3);
 
-			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "loan");
-			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "loan");
-			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "rent");
+			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "Loan");
+			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "Loan");
+			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "Rent");
 //			account 2
-			Transaction transaction4 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "loan");
-			Transaction transaction5 = new Transaction(this.dateTime1, 200, TransactionType.DEBIT, "shopping");
-			Transaction transaction6 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "petShop");
-			Transaction transaction7 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "petShop");
+			Transaction transaction4 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "Loan");
+			Transaction transaction5 = new Transaction(this.dateTime1, 200, TransactionType.DEBIT, "Shopping");
+			Transaction transaction6 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "Pet Shop");
+			Transaction transaction7 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "Pet Shop");
 			account1.addtransactionSet(transaction1);
 			account1.addtransactionSet(transaction2);
 			account1.addtransactionSet(transaction3);

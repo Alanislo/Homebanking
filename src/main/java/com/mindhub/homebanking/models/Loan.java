@@ -22,6 +22,7 @@ public class Loan {
     @ElementCollection
     @Column(name="payment")
     private List<Integer> payments = new ArrayList<>();
+
     @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
     public Loan() {
@@ -52,14 +53,19 @@ public class Loan {
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
     }
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
     @JsonIgnore
     public Set<Client> getClients() {
-
         return clientLoans.stream().map(ClientLoan::getClient).collect(toSet());
     }
     public void addClientLoan(ClientLoan clientLoan) {
         clientLoan.setLoan(this);
         clientLoans.add(clientLoan);
-
     }
+
 }

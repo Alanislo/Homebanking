@@ -133,3 +133,12 @@ footer{
 .app{
     min-height: 70vh;
 }
+.bg-login-image1 {
+    background: url("../public/images/cards\ 2.png");
+    background-position: center;
+    background-size: cover;
+}
+span{
+    font-weight: bold;
+    font-size: 18px;
+}

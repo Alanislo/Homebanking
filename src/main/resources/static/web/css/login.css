@@ -38,7 +38,11 @@ header {
     font-size: 1.3em;
     position: relative;
 }
-
+.bg-login-image {
+    background: url("../public/images/cuadro.jpg");
+    background-position: center;
+    background-size: cover;
+  }
 .buttonsi {
     background: rgb(145, 200, 228);
     background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);
@@ -102,15 +106,27 @@ header {
 }
 .boton{
     background-color: #213555;
-    padding: 6px;
+    padding: 7px;
     color: #FFF;
-    border-radius: 3px;
+    border-radius: 5px;
     text-decoration: none;
 }
 .btn{
     background-color: #028484;
-    padding: 3px;
+    padding: 4px;
     color: #FFF;
-    border-radius: 3px;
+    border-radius: 5px;
     text-decoration: none;
+}
+footer{
+    background-color: var(--colorBlue);
+    color: white;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+}
+.bi{
+    cursor: pointer;
+    margin-left: 3px;
+    margin-right:3px ;
 }

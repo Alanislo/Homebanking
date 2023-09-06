@@ -4,7 +4,8 @@ const options = {
         return {
             accountSet: [],
             transactionSet: [],
-            transactionCredit: []
+            transactionCredit: [],
+            account: null,
         }
     },
     created() {
@@ -22,6 +23,8 @@ const options = {
                     console.log(this.accountSet);
                     this.transactionSet = this.accountSet.transactionSet
                     console.log(this.transactionSet);
+                    this.account = response.data 
+                    console.log(this.account);
                     for(const transaction of this.transactionSet){
                         const aux = {
                              transaction : transaction.type

@@ -143,10 +143,37 @@ form{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: var(--colorLightBlue);
-    width: 20rem;
-    padding: 1rem;
+    padding: 2rem;
 }
 .text{
     text-align: center;
+}
+.form-horizontal{
+    display: flex;
+    justify-content: center;
+
+}
+.transfer{
+    min-height: 69vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-login-image1 {
+    background: url("../public/images/transfer.png");
+    background-position: center;
+    background-size: cover;
+}
+label > span{
+    font-weight: bold;
+    font-size: 18px;
+}
+.bi-cash-coin{
+    fill: var(--colorBlue);
+    margin-top: 9px;
+}
+.bg-login-image2 {
+    background: url("../public/images/loanImage.png");
+    background-position: center;
+    background-size: cover;
 }

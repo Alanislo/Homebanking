@@ -52,39 +52,55 @@
         </div>
       </header>
     <div class="app" id="app" class="d-flex justify-content-center flex-wrap m-5">
-        <div class="login-form m-5">
-            <div>
-                <h2>Choose your card:</h2>
-            </div>
-            <fieldset>
-                <legend>Choose type card</legend>
-                <div>
-                  <input type="radio" id="DEBIT" name="TYPE" value="DEBIT" v-model="cardType">
-                  <label for="DEBIT">Debit </label>
-                </div>
-                <div>
-                  <input type="radio" id="CREDIT" name="TYPE" value="CREDIT" v-model="cardType">
-                  <label for="CREDIT">Credit</label>
-                </div>
-              </fieldset>
-              <fieldset>
-                <legend>Choose color card</legend>
-                <div>
-                  <input type="radio" id="TITANIUM" name="COLOR" value="TITANIUM" v-model="cardColor">
-                  <label for="TITANIUM">Titanium</label>
-                </div>
-                <div>
-                  <input type="radio" id="SILVER" name="COLOR" value="SILVER" v-model="cardColor">
-                  <label for="SILVER">Silver</label>
-                </div>
-                <div>
-                    <input type="radio" id="GOLD" name="COLOR" value="GOLD" v-model="cardColor">
-                    <label for="GOLD">Gold</label>
+      <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center m-5">
+          <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg m-5">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-6 d-none d-lg-block bg-login-image1"></div>
+                  <div class="col-lg-6">
+                      <div class="text-center">
+                        <h1 class="h4 text-gray-900 m-4">Choose your card</h1>
+                      </div>
+                      <div class="login-form m-5">  
+                        <fieldset>
+                            <legend><span>Choose type card</span></legend>
+                            <div>
+                              <input type="radio" id="DEBIT" name="TYPE" value="DEBIT" v-model="cardType">
+                              <label for="DEBIT">Debit </label>
+                            </div>
+                            <div>
+                              <input type="radio" id="CREDIT" name="TYPE" value="CREDIT" v-model="cardType">
+                              <label for="CREDIT">Credit</label>
+                            </div>
+                          </fieldset>
+                          <fieldset>
+                            <legend><span>Choose color card</span></legend>
+                            <div>
+                              <input type="radio" id="TITANIUM" name="COLOR" value="TITANIUM" v-model="cardColor">
+                              <label for="TITANIUM">Titanium</label>
+                            </div>
+                            <div>
+                              <input type="radio" id="SILVER" name="COLOR" value="SILVER" v-model="cardColor">
+                              <label for="SILVER">Silver</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="GOLD" name="COLOR" value="GOLD" v-model="cardColor">
+                                <label for="GOLD">Gold</label>
+                              </div>
+                          </fieldset>
+                          <button class="buttonsi mt-3" type="button" @click.prevent="alerta">Create a new card</button>
+                    </div>      
                   </div>
-              </fieldset>
-              <button class="buttonsi mt-3" type="button" @click.prevent="alerta">Create a new card</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
+      </div>
     </div>
     <footer class="mt-5 d-flex justify-content-around">
         <p class="mt-3">&copy; Copyright 2021, All Rights Reserved.</p>
