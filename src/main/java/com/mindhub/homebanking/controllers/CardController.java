@@ -5,6 +5,8 @@ import com.mindhub.homebanking.models.enums.CardColor;
 import com.mindhub.homebanking.models.enums.CardType;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.CardService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,9 @@ import java.util.stream.Collectors;
 @RestController
 public class CardController {
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
     @Autowired
-    private CardRepository cardRepository;
+    private CardService cardService;
 
     private String randomNumber() {
         String random = "";
@@ -52,22 +54,22 @@ public class CardController {
         }
         CardType cardType =  CardType.valueOf(type);
         CardColor cardColor = CardColor.valueOf(color);
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
         String cardNumber = "";
         do {
             cardNumber = randomNumber();
-        } while (cardRepository.findByNumber(cardNumber) != null);
+        } while (cardService.findCardByNumber(cardNumber) != null);
         int cardCvv = 0;
         do {
             cardCvv = randomCvv();
-        } while (cardRepository.findByCvv(cardCvv) != null);
+        } while (cardService.findByCvv(cardCvv) != null);
         if (!client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
             return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
     }
         Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv, LocalDate.now(), LocalDate.now().plusYears(5));
         client.addCards(card);
-        cardRepository.save(card);
+        cardService.save(card);
         return new ResponseEntity<>("Created a new Card", HttpStatus.CREATED);
     }
 }

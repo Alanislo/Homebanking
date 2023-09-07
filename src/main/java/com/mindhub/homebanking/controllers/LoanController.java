@@ -5,6 +5,7 @@ import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.models.enums.TransactionType;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,61 +20,63 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class LoanController {
     @Autowired
-    LoanRepository loanRepository;
-    @Autowired
-    AccountRepository accountRepository;
-    @Autowired
-    ClientRepository clientRepository;
-    @Autowired
     ClientLoanRepository clientLoanRepository;
     @Autowired
-    TransactionRepository transactionRepository;
+    LoanService loanService;
+    @Autowired
+    AccountService accountService;
+    @Autowired
+    ClientService clientService;
+    @Autowired
+    ClientLoanService clientLoanService;
+    @Autowired
+    TransactionService transactionService;
 
     @RequestMapping("/loans")
     public List<LoanDTO> getLoansDTO(){
-        return loanRepository.findAll().stream().map(loan -> new LoanDTO(loan)).collect(Collectors.toList());
+        return loanService.getLoans();
     }
     @Transactional
     @PostMapping("/loans")
     public ResponseEntity <Object> newLoan(@RequestBody LoanApplicationDTO loanApplicationDTO, Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Loan loan = loanRepository.findById(loanApplicationDTO.getId());
+        Client client = clientService.findByEmail(authentication.getName());
+        Loan loan = loanService.findById(loanApplicationDTO.getId());
         double amount = loanApplicationDTO.getAmount();
         Integer payments = loanApplicationDTO.getPayments();
-        Account account = accountRepository.findByNumber(loanApplicationDTO.getDestinationAccount());
+        Account account = accountService.findByNumber(loanApplicationDTO.getDestinationAccount());
         if(amount == 0 || payments == null){
             return new ResponseEntity<>("Missing Data", HttpStatus.FORBIDDEN);
         }
         if(amount < 0 ){
-            return new ResponseEntity<>("El monto no puede ser negativo", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The amount cannot be negative", HttpStatus.FORBIDDEN);
         }
         if (loan == null){
-            return new ResponseEntity<>("Loans no existe", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Loan doesn't exist", HttpStatus.FORBIDDEN);
         }
         if(clientLoanRepository.existsByClientAndLoan(client, loan)){
-            return new ResponseEntity<>("El loan ya existe", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The loan already exists", HttpStatus.FORBIDDEN);
         }
         if(amount > loan.getMaxAmount()){
-            return new ResponseEntity<>("El monto no puede superar el monto maximo", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The amount cannot exceed the maximum amount", HttpStatus.FORBIDDEN);
         }
         if(!loan.getPayments().contains(payments)){
-            return new ResponseEntity<>("Las cuotas no estan disponibles", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The required payment installments are not available", HttpStatus.FORBIDDEN);
         }
         if (account == null){
-            return new ResponseEntity<>("La cuenta destino no existe", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Destination account does not exist", HttpStatus.FORBIDDEN);
         }
         if(!client.getAccount().contains(account)){
-            return new ResponseEntity<>("La cuenta destino no pertenece al cliente autenticado", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The destination account does not belong to the authenticated client", HttpStatus.FORBIDDEN);
         }
         account.setBalance(account.getBalance() + amount);
         ClientLoan clientLoan = new ClientLoan(loan.getName(), amount *1.2, payments);
         clientLoan.setClient(client);
         clientLoan.setLoan(loan);
-        clientLoanRepository.save(clientLoan);
-        Transaction transaction = new Transaction(LocalDateTime.now(), amount, TransactionType.CREDIT, "Loan approved"+ loan.getName());
-        transactionRepository.save(transaction);
+        clientLoanService.save(clientLoan);
+        Transaction transaction = new Transaction(LocalDateTime.now(), amount, TransactionType.CREDIT, "Loan approved: "+ loan.getName());
+        transactionService.save(transaction);
         account.addtransactionSet(transaction);
-        accountRepository.save(account);
-        return new ResponseEntity<>("Loan aprobado", HttpStatus.CREATED);
+        accountService.save(account);
+        return new ResponseEntity<>("Loan approved", HttpStatus.CREATED);
     }
 }

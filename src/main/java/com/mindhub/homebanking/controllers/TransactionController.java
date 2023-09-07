@@ -4,9 +4,9 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.models.enums.TransactionType;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -26,20 +26,20 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class TransactionController {
     @Autowired
-    TransactionRepository transactionRepository;
+    TransactionRepository transactionService;
     @Autowired
-    ClientRepository clientRepository;
+    ClientService clientService;
     @Autowired
-    AccountRepository accountRepository;
+    AccountService accountService;
 
 
     @Transactional
     @PostMapping("/transactions")
     public ResponseEntity<Object> createTransaction(@RequestParam double amount, @RequestParam String description, @RequestParam String origin, @RequestParam String destination, Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
         //verifico si la cuenta de origen le pertence al ciente autenticado
         Account originAccount = client.getAccount().stream().filter(accountOrigen -> accountOrigen.getNumber().equals(origin)).collect(Collectors.toList()).get(0);
-        Account destinationAccount = accountRepository.findByNumber(destination);
+        Account destinationAccount = accountService.findByNumber(destination);
         if( description.isBlank() && origin.isBlank() || destination.isBlank()){
             return new ResponseEntity<>("Do not leave empty fields", HttpStatus.FORBIDDEN);
         }
@@ -68,10 +68,10 @@ public class TransactionController {
             Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description);
             originAccount.addtransactionSet(debit1);
             destinationAccount.addtransactionSet(credit1);
-            accountRepository.save(originAccount);
-            accountRepository.save(destinationAccount);
-            transactionRepository.save(debit1);
-            transactionRepository.save(credit1);
+            accountService.save(originAccount);
+            accountService.save(destinationAccount);
+            transactionService.save(debit1);
+            transactionService.save(credit1);
 
         }
         return new ResponseEntity<> ("Successful transaction", HttpStatus.ACCEPTED);
