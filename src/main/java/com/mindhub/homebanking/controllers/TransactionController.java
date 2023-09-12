@@ -64,8 +64,8 @@ public class TransactionController {
         }else {
             originAccount.setBalance(originAccount.getBalance() - amount);
             destinationAccount.setBalance(destinationAccount.getBalance() + amount);
-            Transaction debit1 =  new Transaction(LocalDateTime.now(),amount, TransactionType.DEBIT,description);
-            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description);
+            Transaction debit1 =  new Transaction(LocalDateTime.now(),amount, TransactionType.DEBIT,description + " " + destinationAccount.getNumber());
+            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description +" " + destinationAccount.getNumber());
             originAccount.addtransactionSet(debit1);
             destinationAccount.addtransactionSet(credit1);
             accountService.save(originAccount);
