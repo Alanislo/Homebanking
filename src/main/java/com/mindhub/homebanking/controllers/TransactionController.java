@@ -31,8 +31,6 @@ public class TransactionController {
     ClientService clientService;
     @Autowired
     AccountService accountService;
-
-
     @Transactional
     @PostMapping("/transactions")
     public ResponseEntity<Object> createTransaction(@RequestParam double amount, @RequestParam String description, @RequestParam String origin, @RequestParam String destination, Authentication authentication){

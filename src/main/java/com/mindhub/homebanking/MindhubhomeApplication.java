@@ -33,12 +33,12 @@ public class MindhubhomeApplication {
 	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args) {
 		SpringApplication.run(MindhubhomeApplication.class, args);
+		}
 
-	}
 	@Bean
 	public CommandLineRunner initData(ClientRepository repositoryclient , AccountRepository repositoryaccount, TransactionRepository repositorytransaction, LoanRepository repositoryloan, ClientLoanRepository repositoryclientloan, CardRepository repositorycard) {
 		return (args) -> {
-	/*		Account account1 = new Account("VIN001", this.date1 , 5000);
+			Account account1 = new Account("VIN001", this.date1 , 5000);
 			Account account2 = new Account("VIN002", this.date2 , 7500);
 			Account account3 = new Account("H001", this.date1, 23000);
 
@@ -77,8 +77,8 @@ public class MindhubhomeApplication {
 			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
 			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
 
-			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", 999, this.thruDate1, this.fromDate1);
-			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", 123, this.thruDate1, this.fromDate1);
+			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", 999, this.thruDate1, this.fromDate1, true);
+			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", 123, this.thruDate1, this.fromDate1, true);
 
 			mortgage1.addClientLoan(loan1);
 			personal1.addClientLoan(loan2);
@@ -120,8 +120,7 @@ public class MindhubhomeApplication {
 			repositoryclientloan.save(loan4);
 
 			repositorycard.save(card1);
-			repositorycard.save(card2);*/
-
+			repositorycard.save(card2);
 		};
 	}
 }

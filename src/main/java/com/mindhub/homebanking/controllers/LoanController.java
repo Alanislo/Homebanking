@@ -32,7 +32,7 @@ public class LoanController {
     @Autowired
     TransactionService transactionService;
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public List<LoanDTO> getLoansDTO(){
         return loanService.getLoans();
     }
@@ -53,7 +53,7 @@ public class LoanController {
         if (loan == null){
             return new ResponseEntity<>("Loan doesn't exist", HttpStatus.FORBIDDEN);
         }
-        if(clientLoanRepository.existsByClientAndLoan(client, loan)){
+        if(clientLoanService.existsByClientAndLoan(client, loan)){
             return new ResponseEntity<>("The loan already exists", HttpStatus.FORBIDDEN);
         }
         if(amount > loan.getMaxAmount()){

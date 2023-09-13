@@ -35,15 +35,15 @@ public class AccountController {
         }while (accountService.findByNumber(random)!=null);
         return  random;
     }
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public List<AccountDTO> getAccounts() {
         return accountService.getAllAccounts();
     }
-    @RequestMapping("clients/current/accounts")
+    @GetMapping("clients/current/accounts")
     public List<AccountDTO> getAccounts(Authentication authentication){
         return new ClientDTO(clientService.findByEmail(authentication.getName())).getAccountSet().stream().collect(toList());
     }
-    @RequestMapping("/clients/accounts/{id}")
+    @GetMapping("/clients/accounts/{id}")
     public ResponseEntity<Object> getAccount(@PathVariable Long id, Authentication authentication) {
         Client client = clientService.findByEmail(authentication.getName());
         Account account = accountService.findById(id);
@@ -58,7 +58,7 @@ public class AccountController {
             return new ResponseEntity<>("Denegated access", HttpStatus.FORBIDDEN);
         }
     }
-    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
+    @PostMapping("/clients/current/accounts")
     public ResponseEntity<Object> newAccount(Authentication authentication) {
         if (clientService.findByEmail(authentication.getName()).getAccount().size()<=2) {
             String number = randomNumber();

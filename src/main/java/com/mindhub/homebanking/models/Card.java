@@ -23,11 +23,12 @@ public class Card {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
+    private boolean isActive;
     public Card() {
     }
 
 
-    public Card(String cardHolder, CardColor color, CardType type, String number, int cvv, LocalDate thruDate, LocalDate fromDate) {
+    public Card(String cardHolder, CardColor color, CardType type, String number, int cvv, LocalDate thruDate, LocalDate fromDate, boolean isActive) {
         this.cardHolder = cardHolder;
         this.color = color;
         this.type = type;
@@ -35,6 +36,19 @@ public class Card {
         this.cvv = cvv;
         this.thruDate = thruDate;
         this.fromDate = fromDate;
+        this.isActive = isActive;
+    }
+
+    public boolean getActive() {
+        return isActive;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public long getId() {
@@ -110,13 +124,14 @@ public class Card {
         return "Card{" +
                 "id=" + id +
                 ", cardHolder='" + cardHolder + '\'' +
-                ", type=" + type +
                 ", color=" + color +
+                ", type=" + type +
                 ", number='" + number + '\'' +
                 ", cvv=" + cvv +
                 ", thruDate=" + thruDate +
                 ", fromDate=" + fromDate +
                 ", client=" + client +
+                ", active=" + isActive +
                 '}';
     }
 }

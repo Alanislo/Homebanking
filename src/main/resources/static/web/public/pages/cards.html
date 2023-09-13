@@ -66,7 +66,7 @@
         <h2>Debit:</h2>
         <div class="d-flex flex-wrap">
         
-          <template v-if="cardsDebit.length > 0" v-for="(card, index) of cardsDebit" >
+          <template v-if="cardsDebit.length > 0" v-for="(card, index) of cardsDebit" :key="card.id">
             <div class="card mb-3 m-3" :class="{'cardSilver':card.color == 'SILVER', 'cardTitanium': card.color == 'TITANIUM', 'cardGold': card.color == 'GOLD'}">
               <div class="card-body2">
                 <div class="d-flex justify-content-end me-3 mt-1">
@@ -84,11 +84,15 @@
                 </div>      
               </div>
             </div>
+            <div>
+              <button class="buttonsi" type="submit" @click.prevent="eliminateCard(card.id)">Eliminate a card</button>
+            </div>
+           
           </template>
         </div>
           <h2>Credit:</h2>
           <div class="d-flex flex-wrap">
-          <template v-if="cardsCredit.length > 0" v-for="(card, index) of cardsCredit" >
+          <template v-if="cardsCredit.length > 0" v-for="(card, index) of cardsCredit" :key="card.id">
             <div class="card mb-3 m-3":class="{'cardSilver':card.color == 'SILVER', 'cardTitanium': card.color == 'TITANIUM', 'cardGold': card.color == 'GOLD'}">
               <div class="card-body2">
                 <div class="d-flex justify-content-end me-3 mt-1">
@@ -106,13 +110,13 @@
                 </div>           
               </div>
             </div>
-
+            <div>
+              <button class="buttonsi" type="submit" @click.prevent="eliminateCard(card.id)">Eliminate a card</button>
+            </div>
           </template> <template v-else>
            <h3> Not found cards</h3>
           </template>
-       
-        
-        
+
       </div>
     </main>
     <footer class="mt-5 d-flex justify-content-around flex-grow-0">
