@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -44,6 +45,7 @@ public class LoanController {
         double amount = loanApplicationDTO.getAmount();
         Integer payments = loanApplicationDTO.getPayments();
         Account account = accountService.findByNumber(loanApplicationDTO.getDestinationAccount());
+
         if(amount == 0 || payments == null){
             return new ResponseEntity<>("Missing Data", HttpStatus.FORBIDDEN);
         }
@@ -68,12 +70,13 @@ public class LoanController {
         if(!client.getAccount().contains(account)){
             return new ResponseEntity<>("The destination account does not belong to the authenticated client", HttpStatus.FORBIDDEN);
         }
+
         account.setBalance(account.getBalance() + amount);
-        ClientLoan clientLoan = new ClientLoan(loan.getName(), amount *1.2, payments);
+        ClientLoan clientLoan = new ClientLoan(loan.getName(), amount *1.2 , payments);
         clientLoan.setClient(client);
         clientLoan.setLoan(loan);
         clientLoanService.save(clientLoan);
-        Transaction transaction = new Transaction(LocalDateTime.now(), amount, TransactionType.CREDIT, "Loan approved: "+ loan.getName());
+        Transaction transaction = new Transaction(LocalDateTime.now(), amount, TransactionType.CREDIT, "Loan approved: "+ loan.getName(), account.getBalance(), true);
         transactionService.save(transaction);
         account.addtransactionSet(transaction);
         accountService.save(account);

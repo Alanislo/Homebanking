@@ -68,6 +68,7 @@
         <td class="table-strong">Amount</td>
         <td class="table-strong">Creation Date</td>
         <td class="table-strong"> Description - From/to account</td>
+        <td class="table-strong">Actual Balance</td>
       </tr>
       <template v-if="transactionSet.length > 0" v-for="transaction of transactionSet">
         <tr>
@@ -75,6 +76,7 @@
           <td>${{transaction.amount}}</td>
           <td>{{transaction.dateTime}}</td>
           <td> {{transaction.description}}<br></td>
+          <td>{{transaction.balance}}</td>
         </tr>
       </template>
       <template v-else>

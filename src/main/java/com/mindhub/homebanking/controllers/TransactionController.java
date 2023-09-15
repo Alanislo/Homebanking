@@ -62,15 +62,14 @@ public class TransactionController {
         }else {
             originAccount.setBalance(originAccount.getBalance() - amount);
             destinationAccount.setBalance(destinationAccount.getBalance() + amount);
-            Transaction debit1 =  new Transaction(LocalDateTime.now(),amount, TransactionType.DEBIT,description + " " + destinationAccount.getNumber());
-            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description +" " + destinationAccount.getNumber());
+            Transaction debit1 =  new Transaction(LocalDateTime.now(),amount, TransactionType.DEBIT,description + " " + destinationAccount.getNumber(), originAccount.getBalance(), true);
+            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description +" " + destinationAccount.getNumber(), originAccount.getBalance(), true);
             originAccount.addtransactionSet(debit1);
             destinationAccount.addtransactionSet(credit1);
             accountService.save(originAccount);
             accountService.save(destinationAccount);
             transactionService.save(debit1);
             transactionService.save(credit1);
-
         }
         return new ResponseEntity<> ("Successful transaction", HttpStatus.ACCEPTED);
     }

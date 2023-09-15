@@ -1,6 +1,7 @@
 package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.models.enums.AccountType;
 import com.mindhub.homebanking.models.enums.CardColor;
 import com.mindhub.homebanking.models.enums.CardType;
 import com.mindhub.homebanking.models.enums.TransactionType;
@@ -21,8 +22,8 @@ public class MindhubhomeApplication {
 	LocalDate date1 = LocalDate.now();
 	LocalDate date2 = LocalDate.now().plusDays(1);
 
-	LocalDate thruDate1 = LocalDate.now();
-	LocalDate fromDate1 = LocalDate.now().plusYears(5);
+	LocalDate thruDate1 = LocalDate.now().plusYears(5);
+	LocalDate fromDate1 = LocalDate.now();
 
 	LocalDateTime dateTime1 = LocalDateTime.now();
 
@@ -38,9 +39,9 @@ public class MindhubhomeApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository repositoryclient , AccountRepository repositoryaccount, TransactionRepository repositorytransaction, LoanRepository repositoryloan, ClientLoanRepository repositoryclientloan, CardRepository repositorycard) {
 		return (args) -> {
-			Account account1 = new Account("VIN001", this.date1 , 5000);
-			Account account2 = new Account("VIN002", this.date2 , 7500);
-			Account account3 = new Account("H001", this.date1, 23000);
+			Account account1 = new Account("VIN001", this.date1 , 5000,true, AccountType.CHECKING);
+			Account account2 = new Account("VIN002", this.date2 , 7500,true, AccountType.SAVINGS);
+			Account account3 = new Account("H001", this.date1, 23000,true, AccountType.SAVINGS);
 
 			Client client1 = new Client("Melba", "Morel","melba@gmail.com", passwordEncoder.encode("melba"));
 			Client client2 = new Client("Nicolas", "Herlan", "nicolasherlan@gmail.com", passwordEncoder.encode("nico"));
@@ -50,7 +51,7 @@ public class MindhubhomeApplication {
 			client1.addAccount(account1);
 			client2.addAccount(account3);
 
-			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "Loan");
+/*			Transaction transaction1 = new Transaction(this.dateTime1, 2000, TransactionType.CREDIT, "Loan" );
 			Transaction transaction2 = new Transaction(this.dateTime1, 200, TransactionType.CREDIT, "Loan");
 			Transaction transaction3 = new Transaction(this.dateTime1, 2000, TransactionType.DEBIT, "Rent");
 //			account 2
@@ -64,7 +65,7 @@ public class MindhubhomeApplication {
 			account2.addtransactionSet(transaction4);
 			account2.addtransactionSet(transaction5);
 			account2.addtransactionSet(transaction6);
-			account3.addtransactionSet(transaction7);
+			account3.addtransactionSet(transaction7);*/
 
 			// loans
 			Loan mortgage1 = new Loan("Mortgage", 500000, mortgage);
@@ -105,14 +106,14 @@ public class MindhubhomeApplication {
 			repositoryaccount.save(account1);
 			repositoryaccount.save(account2);
 			repositoryaccount.save(account3);
-
+/*
 			repositorytransaction.save(transaction1);
 			repositorytransaction.save(transaction2);
 			repositorytransaction.save(transaction3);
 			repositorytransaction.save(transaction4);
 			repositorytransaction.save(transaction5);
 			repositorytransaction.save(transaction6);
-			repositorytransaction.save(transaction7);
+			repositorytransaction.save(transaction7);*/
 
 			repositoryclientloan.save(loan1);
 			repositoryclientloan.save(loan2);

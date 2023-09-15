@@ -4,10 +4,14 @@ import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.Transaction;
+import com.mindhub.homebanking.models.enums.AccountType;
+import com.mindhub.homebanking.models.enums.CardType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
@@ -26,7 +31,8 @@ public class AccountController {
      private AccountService accountService;
     @Autowired
     private ClientService clientService;
-
+    @Autowired
+    private TransactionService transactionService;
     private String randomNumber(){
         String random;
         do {
@@ -59,16 +65,48 @@ public class AccountController {
         }
     }
     @PostMapping("/clients/current/accounts")
-    public ResponseEntity<Object> newAccount(Authentication authentication) {
+    public ResponseEntity<Object> newAccount(@RequestParam String type, Authentication authentication) {
+        if( !type.equals("CHECKING") && !type.equals("SAVINGS") ){
+            return new ResponseEntity<>("Select the type", HttpStatus.FORBIDDEN);
+        }
+        AccountType accountType =  AccountType.valueOf(type);
         if (clientService.findByEmail(authentication.getName()).getAccount().size()<=2) {
             String number = randomNumber();
-            Account newAccount = new Account(number, LocalDate.now(), 0);
+            Account newAccount = new Account(number, LocalDate.now(), 0, true, accountType);
             clientService.findByEmail(authentication.getName()).addAccount(newAccount);
             accountService.save(newAccount);
-        }else{
+        }
+      else{
             return new ResponseEntity<>("Max accounts created", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
-
+    }
+    @PatchMapping("/clients/current/accounts/disable")
+    public ResponseEntity<Object> disableAccount(@RequestParam long id, Authentication authentication){
+        Client client = clientService.findByEmail(authentication.getName());
+        Account account = accountService.findById(id);
+        Boolean existAccount = client.getAccount().contains(account);
+        Set<Transaction> transactionSet = account.getTransactionSet();
+        Set<Account> accounts = client.getAccount();
+        long accountActive = accounts.stream().filter(account1 -> account1.isActive()).count();
+        if(account == null){
+            return new ResponseEntity<>("Account doesn't exist", HttpStatus.FORBIDDEN);
+        }
+        if(!existAccount){
+            return new ResponseEntity<>("La cuenta no pertenece al cliente", HttpStatus.FORBIDDEN);
+        }
+        if(accountActive <= 1){
+            return new ResponseEntity<>("You cannot delete the only account you have.", HttpStatus.FORBIDDEN);
+        }
+        if(account.getBalance() > 0){
+            return new ResponseEntity<>("No se puede eliminar la cuenta si tiene dinero disponible", HttpStatus.FORBIDDEN);
+        }
+        transactionSet.forEach(transaction -> {
+            transaction.setActive(false);
+            transactionService.save(transaction);
+        });
+        account.setActive(false);
+        accountService.save(account);
+        return new ResponseEntity<>("La cuenta ha sido eliminada",HttpStatus.ACCEPTED);
     }
 }

@@ -30,7 +30,6 @@ public class CardController {
     private ClientService clientService;
     @Autowired
     private CardService cardService;
-
     private String cardNumber = getCardNumber();
     private int cvv = getCVV();
     private String randomNumber() {
@@ -40,20 +39,19 @@ public class CardController {
     private int randomCvv(){
         return getCVV();
     }
-
+    //
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> register(@RequestParam String type , @RequestParam String color, Authentication authentication) {
         if( !type.equals("CREDIT") && !type.equals("DEBIT") ){
             return new ResponseEntity<>("Select the type", HttpStatus.FORBIDDEN);
         }
-
         if( !color.equals("GOLD") && !color.equals("SILVER") && !color.equals("TITANIUM")){
             return new ResponseEntity<>("Select the color", HttpStatus.FORBIDDEN);
         }
         CardType cardType =  CardType.valueOf(type);
         CardColor cardColor = CardColor.valueOf(color);
         Client client = clientService.findByEmail(authentication.getName());
-
+        //
         String cardNumber = "";
         do {
             cardNumber = randomNumber();
@@ -84,7 +82,6 @@ public class CardController {
         if(card.getActive() == false){
             return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
         }
-
         card.setActive(false);
         cardService.save(card);
         return  new ResponseEntity<>("Se ha eliminado la tarjeta con exito", HttpStatus.OK);

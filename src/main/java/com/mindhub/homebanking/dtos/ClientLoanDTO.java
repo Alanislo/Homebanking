@@ -12,21 +12,14 @@ public class ClientLoanDTO {
     private String name;
     private double amount;
     private Integer payments;
-    private Set<ClientDTO> clientSet = new HashSet<>();
+    private Set<ClientDTO> clientSet;
     public ClientLoanDTO(ClientLoan clientloan) {
-
         this.id = clientloan.getId();
-
         this.loanId = clientloan.getLoan().getId();
-
         this.name = clientloan.getName();
-
         this.amount = clientloan.getAmount();
-
         this.payments = clientloan.getPayments();
-
         this.clientSet = new HashSet<>();
-
     }
     public long getId() {
         return id;

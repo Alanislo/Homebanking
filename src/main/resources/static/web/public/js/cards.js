@@ -9,8 +9,8 @@ const {createApp} = Vue
             thruDate:[],
             fromDate:[],
             cvv:null,
-            id: null
-          
+            id: null,
+            dateNao: new Date().toISOString().slice(0, 10),
         }
     },
     created(){

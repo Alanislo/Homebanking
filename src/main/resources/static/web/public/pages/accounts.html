@@ -76,10 +76,10 @@
       <!--Cards-->
       <div class=" d-flex justify-content-around flex-wrap-reverse">
         <div class="card1">
-          <template v-for="account of clientsAccounts">
+          <template v-for="account of clientsAccounts" :key="account.id">
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title  flex-wrap"><span>Savings bank in USD:</span> {{account.number}}
+                <h5 class="card-title  flex-wrap"><span>{{account.type}} ACCOUNT USD:</span> {{account.number}}
                 </h5>
                 <h4><span> ${{account.balance}} </span></h4>
                 <p class="card-subtitle mb-2"><span>Creation Date:</span> {{account.creationDate}}</p>
@@ -87,6 +87,10 @@
               <div>
                 <a class=" d-flex justify-content-center see-more me-5 ms-5 mb-4"
                   :href="'./account.html?id=' + account.id">Movements</a>
+              </div>
+              <div>
+                <a class=" d-flex justify-content-center see-more me-5 ms-5 mb-4"
+                  @click.prevent="eliminateAccount(account.id)">Disable account</a>
               </div>
             </div> 
            
@@ -102,11 +106,29 @@
           <template v-if="clientsAccounts.length<3">
             <div>
               <li class="nav-item2">
-                <a class="nav-link2" @click="alerta"  href="#">Add account<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <a class="nav-link2" @click="createNewAccount"  href="#">Add account<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                 </svg></a>
             </div>
           </template>  
+        </li>
+        <li class="nav-item2 dropdown">
+          <a class="nav-link2 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+          <ul class="dropdown-menu">
+            <fieldset>
+              <legend><span>Choose type account</span></legend>
+              <div>
+                <input type="radio" id="CHECKING" name="COLOR" value="CHECKING" v-model="accountType" >
+                <label for="CHECKING" >Checking Account</label>
+              </div>
+              <div>
+                <input type="radio" id="SAVINGS" name="COLOR" value="SAVINGS" v-model="accountType" >
+                <label for="SAVINGS">Savings Account</label>
+              </div>
+              <button class="buttonsi mt-3" type="button" @click.prevent="createNewAccount">Create a new card</button>
+            </fieldset>
+            
+          </ul>
         </li>
         <li class="nav-item2 ">
           <a class="nav-link2" href="#">Request Loan<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">

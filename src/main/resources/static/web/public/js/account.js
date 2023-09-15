@@ -5,7 +5,7 @@ const options = {
             accountSet: [],
             transactionSet: [],
             transactionCredit: [],
-            account: null,
+            balance:null
         }
     },
     created() {
@@ -24,6 +24,7 @@ const options = {
                     this.transactionSet = this.accountSet.transactionSet
                     console.log(this.transactionSet);
                     this.account = response.data 
+                    this.balance = this.account.balance
                     console.log(this.account);
                     for(const transaction of this.transactionSet){
                         const aux = {
@@ -37,6 +38,7 @@ const options = {
                 })
                 .catch(error => console.log(error))
         },
+      
         logout() {
           axios.post(`/api/logout`)
   
