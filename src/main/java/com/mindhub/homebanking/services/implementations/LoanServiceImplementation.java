@@ -23,4 +23,14 @@ public class LoanServiceImplementation implements LoanService {
     public Loan findById(long id) {
         return loanRepository.findById(id);
     }
+
+    @Override
+    public Loan findByName(String name) {
+        return loanRepository.findByName(name);
+    }
+
+    @Override
+    public Loan save(Loan loan) {
+        return loanRepository.save(loan);
+    }
 }

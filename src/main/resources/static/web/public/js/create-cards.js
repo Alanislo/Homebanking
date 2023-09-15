@@ -4,12 +4,10 @@ const {createApp} = Vue
         return{
             cardType:[],
             cardColor:[],
-
         }
     },
     created(){
       //this.loadData()
-
     },
     methods:{
         alerta(){
@@ -33,12 +31,10 @@ const {createApp} = Vue
         },
        logout() {
           axios.post(`/api/logout`)
-  
           .then(response => console.log('signed out!!'))
-              .then
-  
+          .catch(error => {
+            console.log(error)})
           return (window.location.href = "../../index.html")
-  
       }
     }
  }

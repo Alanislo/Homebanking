@@ -34,19 +34,13 @@ const options = {
                         console.log(aux);
                       }
                       this.transactionSet.sort((a,b) => b.id - a.id)
-                 
                 })
                 .catch(error => console.log(error))
         },
-      
         logout() {
           axios.post(`/api/logout`)
-  
           .then(response => console.log('signed out!!'))
-              .then
-  
           return (window.location.href = "../index.html")
-  
       }
     }
 }

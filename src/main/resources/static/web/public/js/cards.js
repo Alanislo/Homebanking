@@ -29,7 +29,6 @@ const {createApp} = Vue
               this.thruDate = this.cards.map(card => card.thruDate.slice(2,7))
               this.fromDate = this.cards.map(card => card.fromDate.slice(2,7))
               this.cvv = this.cards
-           
             })
             .catch(error => console.log(error))
           },
@@ -45,19 +44,17 @@ const {createApp} = Vue
                   location.href ="/web/public/pages/cards.html"})
                   .catch(error => {
                     console.log(error.response);
-                    window.alert(error.response.data)
-            })
+                    window.alert(error.response.data)})
             } else {
                 mensaje = "Cancel";
             }
         },
          logout() {
           axios.post(`/api/logout`)
-  
           .then(response => console.log('signed out!!'))
-              .then
-  
+          .catch(error => console.log(error))
           return (window.location.href = "../../index.html")
+
       }
     }
   }

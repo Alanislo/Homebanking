@@ -22,18 +22,14 @@ const options = {
           this.loans = this.clients.clientLoans
           console.log(this.clientsAccounts);
           console.log(this.loans);
-
         })
         .catch(error => console.log(error))
     },
     logout() {
       axios.post(`/api/logout`)
-
         .then(response => console.log('signed out!!'))
         .then
-
       return (window.location.href = "../../index.html")
-
     },
     eliminateAccount(id) {
       console.log(id);
@@ -54,7 +50,6 @@ const options = {
         mensaje = "Cancel";
       }
     },
-
     createNewAccount() {
       let mensaje;
       let opcion = confirm("Do you want to create a new account?");
@@ -67,12 +62,10 @@ const options = {
             console.log(error.response);
             window.alert(error.response.data)
           })
-
       } else {
         mensaje = "Cancel";
       }
     },
-
   }
 }
 const app = createApp(options)

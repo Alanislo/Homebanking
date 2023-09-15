@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
   <link rel="stylesheet" href="../css/styles.css" type="text/css">
   <link rel="shortcut icon" href="../public/images/favicon.png" type="image/x-icon">
 </head>
-
 <body>
   <header>
     <div class="container-fluid">
@@ -24,7 +22,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="/rest/clients/">Rest clients</a>
               </li>
@@ -36,6 +33,9 @@
               <li class="nav-item">
                <a class="nav-link me-3" href="/h2-console/">Console</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link me-3" href="./createLoan.html">Create Loans</a>
+               </li>
               <li>
                 <a  href="../index.html" @click="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="30" fill="white"
                   class="bi bi-box-arrow-right mt-2" viewBox="0 0 16 16">
@@ -51,23 +51,19 @@
       </nav>
     </div>
   </header>
-
   <div id="app" v-cloak class="d-flex flex-wrap justify-content-center flex-column mt-5">
     <h2 class="text mt-3">Client Manager</h2>
     <div class="d-flex justify-content-center p-5">
-      <form class="form">
+      <form class="form2">
         <label for="firstName">First Name:</label><br>
         <input v-model="firstName" type="text" name="firstName" id="firstName"><br>
         <label for="lastName">Last Name:</label><br>
         <input v-model="lastName" type="text" name="lastName" id="lastName"><br>
         <label for="email">Email:</label><br>
         <input v-model="email" type="email" name="email" id="email"><br>
-
         <button class="submit mt-3 buttonsi" type="submit" @click="checkInputs" value="Add client">Add Client</button>
-
       </form>
     </div>
-   
     <div>
       <h2 class="text">Client List</h2>
       <table class="container w-100">
@@ -88,9 +84,7 @@
           </template>
         </tbody>
       </table>
-
     </div>
-
     <div class="container">
       <h2 class="text mt-3">Client REST response</h2>
       <pre>
@@ -98,7 +92,6 @@
       </pre>
     </div>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>

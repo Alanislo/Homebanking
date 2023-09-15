@@ -177,3 +177,6 @@ label > span{
     background-position: center;
     background-size: cover;
 }
+.form2{
+ background-color: var(--colorLightBlue);   
+}

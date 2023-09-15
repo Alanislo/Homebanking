@@ -20,7 +20,6 @@ const {createApp} = Vue
             console.log(this.selectOriginAccount);
             console.log(this.selectLoan);
         }   
-
     },
     methods:{
         finAmount(){
@@ -41,8 +40,7 @@ const {createApp} = Vue
                 console.log(object);
                 axios.post('/api/loans', object)
                 .then( response => {
-                  location.href ="/web/public/pages/accounts.html"}
-            )
+                  location.href ="/web/public/pages/accounts.html"})
                   .catch(error => {
                     console.log(error.response);
                     window.alert(error.response.data)
@@ -50,7 +48,6 @@ const {createApp} = Vue
             } else {
                 mensaje = "Cancel";
             }
-      
         },
         loadData(){
             axios.get('/api/clients/current/accounts')
@@ -66,11 +63,9 @@ const {createApp} = Vue
                 console.log(this.loans);
             }).catch(error => console.log(error))
         },
- 
        logout() {
           axios.post(`/api/logout`)
           .then(response => console.log('signed out!!'))
-              .then
           return (window.location.href = "../../index.html")
       }
     }

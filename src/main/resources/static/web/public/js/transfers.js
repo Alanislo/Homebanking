@@ -8,12 +8,10 @@ const {createApp} = Vue
             description:"",
             accounts:[],
             myTransfer: true,
-            
         }
     },
     created(){
     this.loadData()
-
     },
     computed:{
         prueba(){
@@ -59,9 +57,7 @@ const {createApp} = Vue
        logout() {
           axios.post(`/api/logout`)
           .then(response => console.log('signed out!!'))
-          
           return (window.location.href = "../../index.html")
-  
       }
     }
  }

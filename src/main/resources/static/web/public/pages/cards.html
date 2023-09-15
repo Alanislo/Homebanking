@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +24,6 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                
                   <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="./accounts.html">Accounts</a>
                   </li>
@@ -55,7 +53,6 @@
     <!-- End Navbar -->
     <!--- Start Content --->
     <main  class="app container d-flex justify-content-center flex-column flex-grow-1">
-     
       <section class=" mb-5 mt-5 d-flex justify-content-between">
           <h2 class="centrado">Your Cards: </h2>
           <a class="buttonsi" href="./create-cards.html">Create a new card<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -65,7 +62,6 @@
       <div class="d-flex flex-wrap flex-column">
         <h2>Debit:</h2>
         <div class="d-flex flex-wrap">
-        
           <template v-if="cardsDebit.length > 0" v-for="(card, index) of cardsDebit" :key="card.id">
             <div class="card mb-3 m-3" :class="{'cardSilver':card.color == 'SILVER', 'cardTitanium': card.color == 'TITANIUM', 'cardGold': card.color == 'GOLD'}">
               <div class="card-body2">
@@ -87,7 +83,6 @@
             <div>
               <button class="buttonsi" type="submit" @click.prevent="eliminateCard(card.id)">Eliminate a card</button>
             </div>
-           
           </template>
         </div>
           <h2>Credit:</h2>
@@ -115,7 +110,6 @@
           </template> <template v-else>
            <h3> Not found cards</h3>
           </template>
-
       </div>
     </main>
     <footer class="mt-5 d-flex justify-content-around flex-grow-0">
@@ -142,5 +136,4 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../js/cards.js"></script>
-  
   </body>
