@@ -33,7 +33,6 @@ public class LoanController {
     ClientLoanService clientLoanService;
     @Autowired
     TransactionService transactionService;
-
     @GetMapping("/loans")
     public List<LoanDTO> getLoansDTO(){
         return loanService.getLoans();
