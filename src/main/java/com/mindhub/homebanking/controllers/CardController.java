@@ -63,7 +63,7 @@ public class CardController {
         if (!client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
             return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
     }
-        Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv, LocalDate.now(), LocalDate.now().plusYears(5), true);
+        Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv,LocalDate.now().plusYears(5),LocalDate.now(), true);
         client.addCards(card);
         cardService.save(card);
         return new ResponseEntity<>("Created a new Card", HttpStatus.CREATED);

@@ -36,6 +36,9 @@
                 <li class="nav-item">
                   <a class="nav-link me-3" href="./transfers.html">Transfers</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link me-3" href="./payLoan.html">Pay loan</a>
+                </li>
                 <li>
                   <a href="#" @click="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="30"
                       fill="white" class="bi bi-box-arrow-right mt-2" viewBox="0 0 16 16">
@@ -79,7 +82,7 @@
               <div class="card-body">
                 <h5 class="card-title  flex-wrap"><span>{{account.type}} ACCOUNT USD:</span> {{account.number}}
                 </h5>
-                <h4><span> ${{account.balance}} </span></h4>
+                <h4><span> ${{account.balance.toFixed(2)}} </span></h4>
                 <p class="card-subtitle mb-2"><span>Creation Date:</span> {{account.creationDate}}</p>
               </div>
               <div>

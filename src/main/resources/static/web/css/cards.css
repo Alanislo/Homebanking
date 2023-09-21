@@ -70,31 +70,6 @@ header {
     color: white !important;
 }
 
-
-.cardGold{
-    background-image: url(../public/images/GOLDEN.png);
-    width: 20rem;
-  
-}
-.cardSilver{
-    background-image: url(../public/images/SILVER.png);
-    object-fit: contain;
-    width: 20rem;
-}
-.cardTitanium{
-    background-image: url(../public/images/TITANIUM.png);
-    object-fit: contain;
-    color: white!important;
-    width: 20rem;
-}
-.card-body2{
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-
-}
 .buttonsi {
     background: rgb(145, 200, 228);
     background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);
@@ -113,12 +88,10 @@ header {
 }
 .simbolos{
     height: 2.5rem;
-}
-.card-number{
-    font-size: 16px;
-    letter-spacing: .3rem;
+
 }
 footer{
+    margin-top: 3rem;
     background-color: var(--colorBlue);
     color: white;
     height: 3rem;
@@ -133,6 +106,9 @@ footer{
 .app{
     min-height: 70vh;
 }
+.centrado{
+    text-align: center;
+}
 .bg-login-image1 {
     background: url("../public/images/cards\ 2.png");
     background-position: center;
@@ -145,6 +121,164 @@ span{
 .date_1{
     color: red;
 }
-.date_2{
+.flip-card {
+    background-color: transparent;
+    width: 22rem;
+    height: 12rem;
+    perspective: 1000px;
+    color: white;
+  }
+  .logo1{
+    position: absolute;
+    width: 7rem;
+    height: 4rem;
+    top: 6.8em;
+    left: 11.7em;
+  }
+  .chip {
+    position: absolute;
+    top: 2.3em;
+    left: 1em;
+  }
+  .number {
+    text-align: center;
+    letter-spacing: .3rem;
+  }
+  
 
+  .strip {
+    position: absolute;
+    background-color: black;
+    width: 22em;
+    height: 1.5em;
+    top: 2.4em;
+    background: repeating-linear-gradient(
+      45deg,
+      #303030,
+      #303030 10px,
+      #202020 10px,
+      #202020 20px
+    );
+  }
+  
+  .mstrip {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 12em;
+    height: 1.3em;
+    top: 5em;
+    left: .8em;
+    border-radius: 2.5px;
+  }
+  
+  .sstrip {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 6em;
+    height: 1.3em;
+    top: 5em;
+    left: 12em;
+    border-radius: 2.5px;
+  }
+  
+  .code {
+    font-weight: bold;
+    text-align: center;
+    margin: .2em;
+    color: black;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+   
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front-titanium, .flip-card-back-titanium {
+    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    color: white;
+  }
+  
+  .flip-card-front-titanium {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/TITANIUM.png);
+  }
+  
+  .flip-card-back-titanium {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/TITANIUM.png);
+    transform: rotateY(180deg);
+    color: black;
+  }
+  .flip-card-front-silver, .flip-card-back-silver {
+    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+  }
+  
+  .flip-card-front-silver {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/SILVER.png);
+  }
+  
+  .flip-card-back-silver {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/SILVER.png);
+    transform: rotateY(180deg);
+    color: #202020  ;
+  }
+  .flip-card-front-gold, .flip-card-back-gold {
+    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    color:black;
+  }
+  
+  .flip-card-front-gold {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/GOLDEN.png);
+  }
+  
+  .flip-card-back-gold {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background-image: url(../public/images/GOLDEN.png);
+    transform: rotateY(180deg);
+  }
+  .draw-card{
+    height: 10rem;
+}
+.card-help{
+    font-size: 17px;
+    background-color: #c9ddde;
+    padding: 0.5rem;
 }

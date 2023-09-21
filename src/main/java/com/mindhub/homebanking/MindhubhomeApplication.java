@@ -68,15 +68,15 @@ public class MindhubhomeApplication {
 			account3.addtransactionSet(transaction7);*/
 
 			// loans
-			Loan mortgage1 = new Loan("Mortgage", 500000, mortgage);
-			Loan personal1 = new Loan("Personal",100000,personal);
-			Loan automotive1 = new Loan("Automotive",300000,automotive);
+			Loan mortgage1 = new Loan("Mortgage", 500000, mortgage,20.0);
+			Loan personal1 = new Loan("Personal",100000,personal,10.0);
+			Loan automotive1 = new Loan("Automotive",300000,automotive, 5.0);
 
-			ClientLoan loan1 = new ClientLoan("Mortgage",400000,60);
-			ClientLoan loan2 = new ClientLoan("Personal", 50000,12);
+			ClientLoan loan1 = new ClientLoan("Mortgage",400000,60,true);
+			ClientLoan loan2 = new ClientLoan("Personal", 50000,12,true);
 
-			ClientLoan loan3 = new ClientLoan("Personal",100000, 24);
-			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36);
+			ClientLoan loan3 = new ClientLoan("Personal",100000, 24,true);
+			ClientLoan loan4 = new ClientLoan("Automotive",200000, 36,true);
 
 			Card card1 = new Card("Melba Morel" , CardColor.GOLD,CardType.DEBIT,"3333-4457-3333-7089", 999, this.thruDate1, this.fromDate1, true);
 			Card card2 = new Card("Melba Morel", CardColor.TITANIUM,CardType.CREDIT,"3222-4555-3333-7777", 123, this.thruDate1, this.fromDate1, true);

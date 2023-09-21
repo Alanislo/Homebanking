@@ -33,6 +33,9 @@
               <li class="nav-item">
                 <a class="nav-link me-3" href="#">Transfers</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link me-3" href="#">Pay loan</a>
+              </li>
               <li>
                 <a href="../../index.html" @click="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="30"
                     fill="white" class="bi bi-box-arrow-right mt-2" viewBox="0 0 16 16">
@@ -60,7 +63,7 @@
                 <div class="col-lg-6 d-none d-lg-block bg-login-image2"></div>
                 <div class="col-lg-6">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-3 mt-3">Make your loan</h1>
+                      <h1 class="h4 text-gray-900 mb-3 mt-3">Pay your loan</h1>
                     </div>
                     <form class="form-horizontal">                     
                       <!-- Select Basic -->
@@ -77,33 +80,13 @@
                       <!-- Text input-->
                         <div class="form-group">
                           <label class=" control-label" for="originAccount"><span>Origin account:</span></label>
-                          <select id="originAccount" name="originAccount" class="form-control" v-model="selectOriginAccount">
+                          <select id="originAccounts" name="originAccounts" class="form-control" v-model="selectOriginAccount">
                             <template v-for="originAccount of originAccounts">
-                              <option :value="originAccount.number">{{originAccount.number}}</option>
+                              <option :value="originAccount.id">{{originAccount.number}}</option>
                             </template>
                           </select>
                       <!-- Text input-->
-                      <div class="form-group">
-                        <label class=" control-label" for="amount" ><span>Amount:</span></label>
-                        <div class="">
-                          <input id="amount" name="amount" type="number" placeholder="$" class="form-control input-md" required v-model="amount" @input="finalAmount">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class=" control-label" for="payments"><span>Payments</span> </label>
-                        <div class="">
-                          <select id="payments" name="payments" class="form-control" v-model="selectPayments">
-                            <template v-for="payment of selectLoan.payments">
-                              <option :value="payment">{{payment}}</option>
-                            </template>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                          <p class="text-black fw-bolder me-5">The final amount to pay:
-                            ${{calculoInteres.toLocaleString(1)}}
-                        </p>
-                      </div>
+                      <p class="text-black fw-bolder me-5">Amount of payment:${{finAmount}}</p>
                       <!-- Button -->
                       <div class="form-group">
                         <label class=" control-label" for="send"></label>
@@ -111,6 +94,7 @@
                           <button  id="send" @click.prevent="alerta" name="send" class="buttonsi ps-4 pe-4 btn-primary">Send</button>
                         </div>
                       </div>
+                
                     </form> 
                     </div>   
                 </div>
@@ -121,7 +105,7 @@
       </div>
     </div>
   </div>
-  <footer class="mt-4 d-flex justify-content-around">
+  <footer class="mt-5 d-flex justify-content-around">
     <p class="mt-3">&copy; Copyright 2021, All Rights Reserved.</p>
     <div>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook"
@@ -150,7 +134,7 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="../js/loan-application.js"></script>
+  <script src="../js/payLoan.js"></script>
 
 </body>
 

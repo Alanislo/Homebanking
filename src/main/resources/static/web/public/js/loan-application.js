@@ -8,7 +8,8 @@ const {createApp} = Vue
             selectLoan:{},
             selectOriginAccount:{},
             selectPayments:{},
-            finalAmount: null,
+            finalAmount:null,
+            amountTotal:null
         }
     },
     created(){
@@ -19,12 +20,46 @@ const {createApp} = Vue
         prueba(){
             console.log(this.selectOriginAccount);
             console.log(this.selectLoan);
-        }   
+            
+        },
+        calculoInteres() {
+            console.log(this.selectOriginAccount);
+            console.log(this.selectLoan);
+            console.log(this.finalAmount);
+            console.log(this.loans);
+            
+            if (this.selectPayments == 3) {
+                this.finalAmount = this.amount + (this.amount * 0.0375)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 6) {
+                this.finalAmount = this.amount + (this.amount * 0.075)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 12) {
+                this.finalAmount = this.amount + (this.amount * 0.105)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 24) {
+                this.finalAmount = this.amount + (this.amount * 0.165)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 36) {
+                this.finalAmount = this.amount + (this.amount * 0.225)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 48) {
+                this.finalAmount = this.amount + (this.amount * 0.335)
+                return this.finalAmount;
+            }
+            else if (this.selectPayments == 60) {
+                this.finalAmount = this.amount + (this.amount * 0.395)
+                return this.finalAmount;
+            } else { return 0 };
+        } 
     },
     methods:{
-        finAmount(){
-            this.finalAmount = this.amount * 1.2
-        },
+       
         alerta(){
             let mensaje;
             let opcion = confirm("Do you want to create a new loan?");
@@ -52,7 +87,8 @@ const {createApp} = Vue
         loadData(){
             axios.get('/api/clients/current/accounts')
             .then(response=>{
-                this.originAccounts = response.data
+                this.originAccounts = response.data.filter(account => account.active)
+                
                 console.log(this.originAccounts);
             }).catch(error => console.log(error))
         },

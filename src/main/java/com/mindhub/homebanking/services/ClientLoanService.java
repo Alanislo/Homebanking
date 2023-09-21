@@ -6,6 +6,6 @@ import com.mindhub.homebanking.models.Loan;
 
 public interface ClientLoanService {
     ClientLoan save(ClientLoan clientLoan);
-
     boolean existsByClientAndLoan(Client client, Loan loan);
+    ClientLoan findById(Long id);
 }

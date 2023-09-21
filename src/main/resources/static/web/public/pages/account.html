@@ -71,9 +71,9 @@
         <tr>
           <td class="" :class="transaction.type == 'CREDIT' ? 'text-success' : 'text-danger'">{{transaction.type}}</td>
           <td>${{transaction.amount}}</td>
-          <td>{{transaction.dateTime}}</td>
+          <td>{{transaction.dateTime.slice(0,16)}}</td>
           <td> {{transaction.description}}<br></td>
-          <td>{{transaction.balance}}</td>
+          <td>${{transaction.balance.toFixed(2)}}</td>
         </tr>
       </template>
       <template v-else>

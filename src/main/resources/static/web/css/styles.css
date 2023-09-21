@@ -123,6 +123,12 @@ footer{
 .app{
     min-height: 51vh;
 }
+.transfer {
+    min-height: 77vh !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .buttonsi {
     background: rgb(145, 200, 228);
     background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);

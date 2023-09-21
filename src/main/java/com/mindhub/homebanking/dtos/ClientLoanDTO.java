@@ -13,6 +13,7 @@ public class ClientLoanDTO {
     private double amount;
     private Integer payments;
     private Set<ClientDTO> clientSet;
+    private boolean isActive;
     public ClientLoanDTO(ClientLoan clientloan) {
         this.id = clientloan.getId();
         this.loanId = clientloan.getLoan().getId();
@@ -20,7 +21,13 @@ public class ClientLoanDTO {
         this.amount = clientloan.getAmount();
         this.payments = clientloan.getPayments();
         this.clientSet = new HashSet<>();
+        this.isActive = clientloan.isActive();
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
     public long getId() {
         return id;
     }

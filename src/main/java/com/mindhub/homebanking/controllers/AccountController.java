@@ -93,13 +93,13 @@ public class AccountController {
             return new ResponseEntity<>("Account doesn't exist", HttpStatus.FORBIDDEN);
         }
         if(!existAccount){
-            return new ResponseEntity<>("La cuenta no pertenece al cliente", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The account does not belong to the client", HttpStatus.FORBIDDEN);
         }
         if(accountActive <= 1){
             return new ResponseEntity<>("You cannot delete the only account you have.", HttpStatus.FORBIDDEN);
         }
         if(account.getBalance() > 0){
-            return new ResponseEntity<>("No se puede eliminar la cuenta si tiene dinero disponible", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You cannot delete the account if you have money available", HttpStatus.FORBIDDEN);
         }
         transactionSet.forEach(transaction -> {
             transaction.setActive(false);
@@ -107,6 +107,6 @@ public class AccountController {
         });
         account.setActive(false);
         accountService.save(account);
-        return new ResponseEntity<>("La cuenta ha sido eliminada",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("The account has been deleted",HttpStatus.ACCEPTED);
     }
 }

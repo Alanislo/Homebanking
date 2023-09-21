@@ -23,4 +23,9 @@ public class ClientLoanServiceImplementation implements ClientLoanService {
         return clientLoanRepository.existsByClientAndLoan(client, loan);
     }
 
+    @Override
+    public ClientLoan findById(Long id) {
+        return clientLoanRepository.findById(id).orElse(null);
+    }
+
 }

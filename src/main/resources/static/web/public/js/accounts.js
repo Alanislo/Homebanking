@@ -19,7 +19,7 @@ const options = {
           this.clients = response.data
           console.log(response.data);
           this.clientsAccounts = this.clients.accountSet.filter(account => account.active)
-          this.loans = this.clients.clientLoans
+          this.loans = this.clients.clientLoans.filter(account => account.active)
           console.log(this.clientsAccounts);
           console.log(this.loans);
         })

@@ -4,7 +4,7 @@ const {createApp} = Vue
         return{
            name:"",
            amount:null,
-          
+            interest:null,
            payments:[],
         }
     },
@@ -25,7 +25,8 @@ const {createApp} = Vue
             let object = {  
             "name": this.name,
             "maxAmount": this.amount,
-            "payments": this.payments}
+            "payments": this.payments,
+            "interest": this.interest}
 
             let opcion = confirm("Do you want to create a new type of loan?");
             console.log("Hola");

@@ -13,7 +13,7 @@ public class ClientLoan {
     private String name;
     private double amount;
     private Integer payments;
-
+    private boolean isActive;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
@@ -22,11 +22,21 @@ public class ClientLoan {
     private Loan loan;
     public ClientLoan() {
     }
-    public ClientLoan(String name, double amount, Integer payments) {
+    public ClientLoan(String name, double amount, Integer payments, boolean isActive) {
         this.name = name;
         this.amount = amount;
         this.payments = payments;
+        this.isActive = isActive;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public long getId() {
         return id;
     }

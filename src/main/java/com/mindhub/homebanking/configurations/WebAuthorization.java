@@ -21,14 +21,14 @@ public class WebAuthorization {
     //reglas de autorizacion
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/clients", "/api/login", "/api/logout").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clients", "/api/login", "/api/logout", "/api/transactions/cards").permitAll()
                 .antMatchers("/web/index.html", "/web/login.html", "/web/register.html","/web/register.js",
                         "/web/css/login.css","/web/css/styles.css", "/web/login.js", "/web/public/images/**","/web/css/index.css", "/web/index.js", "/web/css/**").permitAll()
                 .antMatchers("/rest/**", "/h2-console/**", "/api/loans/create").hasAuthority("ADMIN")
                 .antMatchers("/web/manager/**", "/api/clients").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET,"/api/clients/current/**", "/api/clients/current/cards", "/api/accounts/**",
                         "/api/clients/accounts/{id}", "/api/loans" ).hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.PATCH ,"/api/clients/current/cards/deactivate", "/api/clients/current/accounts/disable").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH ,"/api/clients/current/cards/deactivate", "/api/clients/current/accounts/disable","/api/clients/current/loans/loanPayment").hasAuthority("CLIENT")
                 .antMatchers("/web/public/pages/**", "/web/public/js/**", "/web/public/js/account.js").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients/current/accounts", "/api/clients/current/cards", "/api/transactions", "/api/loans").hasAuthority("CLIENT")
                 .anyRequest().denyAll();
@@ -49,7 +49,9 @@ public class WebAuthorization {
             http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
             // if logout is successful, just send a success response
             http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+            http.cors();
             return http.build();
+
         }
 
         private void clearAuthenticationAttributes (HttpServletRequest request){

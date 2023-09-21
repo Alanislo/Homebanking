@@ -51,7 +51,7 @@
             </nav>
         </div>
     </header>
-    <div id="app" class="transfer container">
+    <div id="app" class=" transfer container">
         <div class="container">
           <!-- Outer Row -->
           <div class="row justify-content-center">
@@ -63,7 +63,7 @@
                     <div class="col-lg-6 d-none d-lg-block bg-login-image2"></div>
                     <div class="col-lg-6">
                         <div class="text-center">
-                          <h1 class="h4 text-gray-900 mb-3 mt-3">Make your loan</h1>
+                          <h1 class="h4 text-gray-900 mb-3 mt-3">Create a type of loan</h1>
                         </div>
                         <form class="form-horizontal">                     
                         
@@ -80,7 +80,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                              <label class=" control-label" for="payments" ><span>List Payments (separate with ",")</span></label>
+                              <label class=" control-label" for="payments" ><span>List Payments</span></label>
                               <div class="d-flex flex-wrap">
                                 <div class="ms-4 mt-2 ">
                                     <input type="checkbox" id="" value="3" v-model="payments"/>
@@ -107,7 +107,14 @@
                                     <label for="cbox2">48</label>
                                 </div>
                             </div>
-                          </div>                   
+                            <div class="form-group">
+                              <div class="">
+                                <label class=" control-label" for="interest" ><span>Interest</span></label>
+                              <input id="interest" name="interest" type="number" placeholder="%5 initial" class="form-control input-md" required v-model="interest">
+                            </div>
+                          </div>
+                          </div> 
+
                           <!-- Button -->
                           <div class="form-group">
                             <label class=" control-label" for="send"></label>

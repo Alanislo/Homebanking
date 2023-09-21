@@ -26,12 +26,15 @@ const {createApp} = Vue
         transfer2(){
             this.myTransfer = true;
         },
-        loadData(){
+        loadData(){    
+            console.log("holi");
             axios.get('/api/clients/current/accounts')
             .then(response=>{
-                this.accounts = response.data
+                this.accounts = response.data.filter(account => account.active)
                 console.log(this.accounts);
-            }).catch(error => console.log(error))
+            }).catch(error => {
+                console.log("Hubo un error!!!:")
+                error.log(error)})
           },
         alert(){
             let mensaje;

@@ -7,7 +7,9 @@ import com.mindhub.homebanking.services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,5 +34,11 @@ public class LoanServiceImplementation implements LoanService {
     @Override
     public Loan save(Loan loan) {
         return loanRepository.save(loan);
+    }
+    @Override
+    public List<Integer> getPaymentsList(String name) {
+        List<Integer> paymentsSet = loanRepository.findByName(name).getPayments();
+        List<Integer> paymentsList = new ArrayList<>(paymentsSet);
+        return paymentsList;
     }
 }

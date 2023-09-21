@@ -11,4 +11,5 @@ public interface LoanService {
     public Loan findById(long id);
     Loan findByName(String name);
     Loan save(Loan loan);
+    List<Integer> getPaymentsList(String name);
 }
