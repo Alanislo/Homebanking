@@ -9,7 +9,8 @@ const {createApp} = Vue
             selectOriginAccount:{},
             selectPayments:{},
             finalAmount:null,
-            amountTotal:null
+            amountTotal:null,
+            max:null
         }
     },
     created(){
@@ -20,7 +21,7 @@ const {createApp} = Vue
         prueba(){
             console.log(this.selectOriginAccount);
             console.log(this.selectLoan);
-            
+          
         },
         calculoInteres() {
             console.log(this.selectOriginAccount);
@@ -87,8 +88,7 @@ const {createApp} = Vue
         loadData(){
             axios.get('/api/clients/current/accounts')
             .then(response=>{
-                this.originAccounts = response.data.filter(account => account.active)
-                
+                this.originAccounts = response.data.filter(account => account.active)  
                 console.log(this.originAccounts);
             }).catch(error => console.log(error))
         },

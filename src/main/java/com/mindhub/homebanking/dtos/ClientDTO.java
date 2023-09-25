@@ -17,9 +17,7 @@ public class ClientDTO {
     private Set<CardDTO> cards;
 
     public ClientDTO(Client client) {
-
         this.id = client.getId();
-
         this.firstName = client.getFirstName();
 
         this.lastName = client.getLastName();

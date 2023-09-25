@@ -60,7 +60,7 @@ public class CardController {
         do {
             cardCvv = randomCvv();
         } while (cardService.findByCvv(cardCvv) != null);
-        if (!client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
+        if (client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
             return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
     }
         Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv,LocalDate.now().plusYears(5),LocalDate.now(), true);
@@ -74,16 +74,16 @@ public class CardController {
         Client client = clientService.findByEmail(authentication.getName());
         Boolean existCard = client.getCards().contains(card);
         if(card == null){
-            return  new ResponseEntity<>("La tarjeta no existe", HttpStatus.FORBIDDEN);
+            return  new ResponseEntity<>("The card does not exist", HttpStatus.FORBIDDEN);
         }
         if (!existCard){
-            return  new ResponseEntity<>("Esta tarjeta no pertece a este cliente", HttpStatus.FORBIDDEN);
+            return  new ResponseEntity<>("This card does not belong to this client", HttpStatus.FORBIDDEN);
         }
         if(card.getActive() == false){
-            return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("This card has already been deleted", HttpStatus.FORBIDDEN);
         }
         card.setActive(false);
         cardService.save(card);
-        return  new ResponseEntity<>("Se ha eliminado la tarjeta con exito", HttpStatus.OK);
+        return  new ResponseEntity<>("The card has been deleted successfully", HttpStatus.OK);
     }
 }

@@ -14,10 +14,8 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-
     private long id;
     private String number;
-
     private LocalDate creationDate;
     private double balance;
     private boolean active;
@@ -25,13 +23,10 @@ public class Account {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
-
     @OneToMany(mappedBy = "account", fetch=FetchType.EAGER)
     private Set<Transaction> transactionSet= new HashSet<>();
-
     public Account() {
     }
-
     public Account( String number, LocalDate creationDate, double balance, boolean active, AccountType type) {
         this.number = number;
         this.creationDate = creationDate;

@@ -5,11 +5,13 @@ const options = {
             accountSet: [],
             transactionSet: [],
             transactionCredit: [],
-            balance:null
+            balance:null, 
+            name:null
         }
     },
     created() {
         this.loadData()
+        
     },
     methods: {
         loadData() {

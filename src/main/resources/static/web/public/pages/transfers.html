@@ -15,7 +15,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg">
         <div class="container ">
-          <a class="navbar-brand" href="#"><img src="../images/logo.png" alt="logo" class="logo"></a>
+          <a class="navbar-brand" href="./accounts.html"><img src="../images/logo.png" alt="logo" class="logo"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -23,7 +23,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="./accounts.html">Accounts</a>
               </li>
@@ -34,6 +33,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link me-3" href="#">Transfers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-3" href="./payLoan.html">Pay loan</a>
               </li>
               <li>
                 <a href="../../index.html" @click="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="30"
@@ -64,7 +66,13 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-3 mt-3">Make your transfer</h1>
                     </div>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" >
+                      <p v-if="errors.length">
+                        <b>Please correct the following error(s):</b>
+                        <ul>
+                          <li v-for="error in errors">{{ error }}</li>
+                        </ul>
+                      </p>
                       <!-- Multiple Radios -->
                       <div class="form-group ">
                         <label class=" control-label" for="accounts"> <span>Transfer to:</span></label>
@@ -85,24 +93,26 @@
                       </div>
                       <!-- Select Basic -->
                       <div class="form-group">
-                        <label class=" control-label" for="sourceaccount"><span>Source Account:</span> </label>
+                        <label class="control-label" for="sourceaccount"><span>Source Account:</span></label>
                         <div class="">
-                          <select id="sourceaccount" name="sourceaccount" class="form-control" v-model="accountOrigen">
-                            <template v-if="accounts.length >0" v-for="account of accounts">
-                              <option :value="account.number">{{account.number}}</option>
+                          <select id="sourceaccount" name="sourceaccount" class="form-control" v-model="accountOrigen" @change="filterDestinationOptions">
+                            <template v-if="accounts.length > 0" v-for="account of accounts">
+                              <option :value="account.number">{{ account.number }}</option>
                             </template>
                           </select>
                         </div>
                       </div>
+                      
                       <!-- Text input-->
                       <template v-if="myTransfer">
                         <div class="form-group">
-                          <label class=" control-label" for="accountDestino"><span>Destination account:</span></label>
-                          <select id="sourceaccount" name="sourceaccount" class="form-control" v-model="accountDestino">
-                            <template v-if="accounts.length >0" v-for="account of accounts">
-                              <option :value="account.number">{{account.number}}</option>
+                          <label class="control-label" for="accountDestino"><span>Destination account:</span></label>
+                          <select id="accountDestino" name="accountDestino" class="form-control" v-model="accountDestino">
+                            <template v-if="filteredAccounts.length > 0" v-for="account of filteredAccounts">
+                              <option :value="account.number">{{ account.number }}</option>
                             </template>
                           </select>
+                        </div>
                       </template>
                       <template v-else>
                         <div class="form-group">
@@ -125,7 +135,7 @@
                       <div class="form-group">
                         <label class=" control-label" for="amount"><span>Amount:</span></label>
                         <div class="">
-                          <input id="amount" name="amount" type="number" placeholder="$" class="form-control input-md" required
+                          <input id="amount" name="amount" type="number" placeholder="$" class="form-control input-md" required min="1" max="1000000000"
                             v-model="amount">
                         </div>
                       </div>
@@ -133,7 +143,7 @@
                       <div class="form-group">
                         <label class=" control-label" for="send"></label>
                         <div class="d-flex justify-content-center">
-                          <button  id="send" @click="alert" name="send" class="buttonsi ps-4 pe-4 btn-primary">Send</button>
+                          <input type="submit"  id="send" value="Send" name="send" class="buttonsi ps-4 pe-4 btn-primary" @click.prevent="checkForm">
                         </div>
                       </div>
                     </form>          

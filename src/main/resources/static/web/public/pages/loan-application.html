@@ -14,7 +14,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg">
         <div class="container ">
-          <a class="navbar-brand" href="#"><img src="../images/logo.png" alt="logo" class="logo"></a>
+          <a class="navbar-brand" href="./accounts.html"><img src="../images/logo.png" alt="logo" class="logo"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -32,6 +32,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link me-3" href="#">Transfers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-3" href="./payLoan.html">Pay loan</a>
               </li>
               <li>
                 <a href="../../index.html" @click="logout()"><svg xmlns="http://www.w3.org/2000/svg" width="27" height="30"
@@ -84,9 +87,10 @@
                           </select>
                       <!-- Text input-->
                       <div class="form-group">
-                        <label class=" control-label" for="amount" ><span>Amount:</span></label>
+                        <label class=" control-label" for="amount" ><span>Amount: </span></label>
                         <div class="">
                           <input id="amount" name="amount" type="number" placeholder="$" class="form-control input-md" required v-model="amount" @input="finalAmount">
+                        <p>Max amount:${{selectLoan.maxAmount}}</p>
                         </div>
                       </div>
                       <div class="form-group">

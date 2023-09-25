@@ -90,6 +90,13 @@ public class Client {
         clientLoan.setClient(this);
         clientLoans.add(clientLoan);
     }
+    /* new Client()
+    Client melba = new Client();
+    Client Juan = new Client();
+    melba.addClientLoan(clientLoan1);
+    juan.addClientLoan(clientLoan2);
+    melba.addClientLoan(clientLoan2);
+    */
     public void addCards(Card card) {
         card.setClient(this);
         cards.add(card);

@@ -38,7 +38,7 @@ public class TransactionController {
         //verifico si la cuenta de origen le pertence al ciente autenticado
         Account originAccount = client.getAccount().stream().filter(accountOrigen -> accountOrigen.getNumber().equals(origin)).collect(Collectors.toList()).get(0);
         Account destinationAccount = accountService.findByNumber(destination);
-        if( description.isBlank() && origin.isBlank() || destination.isBlank()){
+        if( description.isBlank() && origin.isBlank() && destination.isBlank()){
             return new ResponseEntity<>("Do not leave empty fields", HttpStatus.FORBIDDEN);
         }
         if (description.isBlank()) {
@@ -47,15 +47,14 @@ public class TransactionController {
         if (origin.isBlank()){
             return new ResponseEntity<>("Choose source account", HttpStatus.FORBIDDEN);
         }
-        if (destination == null){
+        if (destination.isBlank()){
             return new ResponseEntity<>("Destination account doesn't exists", HttpStatus.FORBIDDEN);
-        }
-
-        if (amount <= 0){
-            return new ResponseEntity<>("Enter the amount", HttpStatus.FORBIDDEN );
         }
         if(origin.equals(destination)){
             return new ResponseEntity<>( "The accounts cannot be the same", HttpStatus.FORBIDDEN);
+        }
+        if (amount <= 0){
+            return new ResponseEntity<>("Enter valid amount", HttpStatus.FORBIDDEN );
         }
         if(originAccount.getBalance() < amount){
             return new ResponseEntity<> ("Not enough funds", HttpStatus.FORBIDDEN);
@@ -63,7 +62,7 @@ public class TransactionController {
             originAccount.setBalance(originAccount.getBalance() - amount);
             destinationAccount.setBalance(destinationAccount.getBalance() + amount);
             Transaction debit1 =  new Transaction(LocalDateTime.now(),amount, TransactionType.DEBIT,description + " " + destinationAccount.getNumber(), originAccount.getBalance(), true);
-            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description +" " + destinationAccount.getNumber(), originAccount.getBalance(), true);
+            Transaction credit1 = new Transaction(LocalDateTime.now(),amount, TransactionType.CREDIT,description +" " + originAccount.getNumber(), originAccount.getBalance(), true);
             originAccount.addtransactionSet(debit1);
             destinationAccount.addtransactionSet(credit1);
             accountService.save(originAccount);

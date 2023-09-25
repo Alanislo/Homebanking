@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @Configuration
 public class WebAuthorization {
     @Bean
-    //reglas de autorizacion
+    //reglas de autorizacion. para configurar las reglas de autorización y otros aspectos de seguridad.
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/clients", "/api/login", "/api/logout", "/api/transactions/cards").permitAll()
@@ -36,7 +36,8 @@ public class WebAuthorization {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginPage("/api/login");
-            http.logout().logoutUrl("/api/logout");
+            http.logout().logoutUrl("/api/logout").deleteCookies();
+
             // Proteccion desabilitada
             http.csrf().disable();
             //disabling frameOptions so h2-console can be accessed

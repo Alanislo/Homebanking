@@ -17,7 +17,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
           <div class="container ">
-            <a class="navbar-brand" href="#"><img src="../images/logo.png" alt="logo" class="logo"></a>
+            <a class="navbar-brand" href="./accounts.html"><img src="../images/logo.png" alt="logo" class="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
               aria-label="Toggle navigation">
@@ -137,7 +137,7 @@
               </ul>
             </li>
             <li class="nav-item2 ">
-              <a class="nav-link2" href="#">Request Loan<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+              <a class="nav-link2" href="./loan-application.html">Request Loan<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                   fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                   <path
                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -181,7 +181,7 @@
               <div class="card-body3 d-flex justify-content-center flex-wrap">
                 <img class="loans mb-2" src="../images/loans.png" alt="">
                 <p class="ms-2 mt-3"><span> Type: </span> {{loan.name}}</p>
-                <p class="ms-2 mt-3"><span> Amount: </span> ${{loan.amount}} </p>
+                <p class="ms-2 mt-3"><span> Amount: </span> ${{loan.amount.toFixed(2)}} </p>
                 <p class="ms-2 mt-3"><span> Payments: </span> {{loan.payments}}</p>
               </div>
             </div>

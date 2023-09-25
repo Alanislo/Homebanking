@@ -8,6 +8,8 @@ const {createApp} = Vue
             description:"",
             accounts:[],
             myTransfer: true,
+            errors: [],
+            filteredAccounts: [],
         }
     },
     created(){
@@ -20,6 +22,11 @@ const {createApp} = Vue
         }
     },
     methods:{
+            filterDestinationOptions() {
+              const selectedOriginAccount = this.accountOrigen;
+              this.filteredAccounts = this.accounts.filter(account => account.number !== selectedOriginAccount);
+            },
+          
         transfer(){
             this.myTransfer = false;
         },
@@ -27,7 +34,6 @@ const {createApp} = Vue
             this.myTransfer = true;
         },
         loadData(){    
-            console.log("holi");
             axios.get('/api/clients/current/accounts')
             .then(response=>{
                 this.accounts = response.data.filter(account => account.active)
@@ -36,27 +42,64 @@ const {createApp} = Vue
                 console.log("Hubo un error!!!:")
                 error.log(error)})
           },
-        alert(){
-            let mensaje;
-            let opcion = confirm("Do you want to create a new transfer?");
-            console.log("Hola");
-            if (opcion == true) {
-             console.log(this.accountOrigen);
-             console.log(this.accountDestino);
-             console.log(this.amount);
-             console.log(this.description);
-                axios.post('/api/transactions',`amount=${this.amount}&description=${this.description}&origin=${this.accountOrigen}&destination=${this.accountDestino}`)
-                .then( response => {
-                  location.href ="./web/public/pages/account.html"})
-                  .catch(error => {
-                    console.log(error.response);
-                    window.alert(error.response.data)
-            })
-            } else {
-                mensaje = "Cancel";
+          checkForm: function (e) {
+            this.errors = [];
+      
+            if (this.amount <= 0 )  {
+              this.errors.push("The amount must be positive");
             }
+            if (!this.accountOrigen) {
+                this.errors.push('Choose source account');
+              }
+              if (!this.accountDestino) {
+                this.errors.push('Choose the destination account');
+              }
+              if (!this.description) {
+                this.errors.push('Enter a description');
+              }
+            else{
+                let mensaje;
+                let opcion = confirm("Do you want to create a new transfer?");
+                if (opcion == true) {
+                 console.log(this.accountOrigen);
+                 console.log(this.accountDestino);
+                 console.log(this.amount);
+                 console.log(this.description);
+                    axios.post('/api/transactions',`amount=${this.amount}&description=${this.description}&origin=${this.accountOrigen}&destination=${this.accountDestino}`)
+                    .then( response => {
+                        location.href ="/web/public/pages/accounts.html"
+                      })
+                      .catch(error => {
+                        console.log(error.response.data);
+                        window.alert(error.response.data)
+                })
+                } else {
+                    mensaje = "Cancel";
+                }
+            }
+            e.preventDefault();
+          },
+        // alert(){
+        //     let mensaje;
+        //     let opcion = confirm("Do you want to create a new transfer?");
+        //     if (opcion == true) {
+        //      console.log(this.accountOrigen);
+        //      console.log(this.accountDestino);
+        //      console.log(this.amount);
+        //      console.log(this.description);
+        //         axios.post('/api/transactions',`amount=${this.amount}&description=${this.description}&origin=${this.accountOrigen}&destination=${this.accountDestino}`)
+        //         .then( response => {
+        //             location.href ="/web/public/pages/accounts.html"
+        //           })
+        //           .catch(error => {
+        //             console.log(error.response.data);
+        //             window.alert(error.response.data)
+        //     })
+        //     } else {
+        //         mensaje = "Cancel";
+        //     }
            
-        },
+        // },
        logout() {
           axios.post(`/api/logout`)
           .then(response => console.log('signed out!!'))
