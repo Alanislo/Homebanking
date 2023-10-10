@@ -60,9 +60,9 @@ public class CardController {
         do {
             cardCvv = randomCvv();
         } while (cardService.findByCvv(cardCvv) != null);
-        if (client.getCards().stream().filter(card1 -> card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()){
+        if (!client.getCards().stream().filter(card1 -> card1.getActive() == false &&  card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()) {
             return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
-    }
+        }
         Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv,LocalDate.now().plusYears(5),LocalDate.now(), true);
         client.addCards(card);
         cardService.save(card);

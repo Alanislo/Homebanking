@@ -28,13 +28,12 @@ public class CardDTO {
        this.cvv = card.getCvv();
        this.thruDate = card.getThruDate();
        this.fromDate = card.getFromDate();
-       this.isActive = card.isActive();
+       this.isActive = card.getActive();
     }
 
     public boolean isActive() {
         return isActive;
     }
-
     public long getId() {
         return id;
     }

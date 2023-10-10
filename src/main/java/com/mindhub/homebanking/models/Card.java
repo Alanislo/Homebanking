@@ -27,7 +27,6 @@ public class Card {
     public Card() {
     }
 
-
     public Card(String cardHolder, CardColor color, CardType type, String number, int cvv, LocalDate thruDate, LocalDate fromDate, boolean isActive) {
         this.cardHolder = cardHolder;
         this.color = color;
@@ -40,10 +39,6 @@ public class Card {
     }
 
     public boolean getActive() {
-        return isActive;
-    }
-
-    public boolean isActive() {
         return isActive;
     }
 

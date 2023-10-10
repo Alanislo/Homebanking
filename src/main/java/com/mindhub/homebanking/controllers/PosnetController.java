@@ -42,7 +42,7 @@ public class PosnetController {
         if(card == null){
             return new ResponseEntity<>("Card not found", HttpStatus.FORBIDDEN);
         }
-        if(!card.isActive()){
+        if(!card.getActive()){
             return new ResponseEntity<>("Card not active", HttpStatus.FORBIDDEN);
         }
         if(card.getFromDate().isBefore(ChronoLocalDate.from(LocalDateTime.now()))){
