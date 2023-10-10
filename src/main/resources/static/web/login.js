@@ -2,15 +2,22 @@ const {createApp} = Vue
  const options = {
     data(){
         return{
-        email:"",
-        password:"",
-        error_msg:""
+            email: localStorage.getItem('email') || '',
+            password: localStorage.getItem('password') || '',
+            rememberMe: false,
+            error_msg:""
         }
     },
     methods : {
         login() {
-            axios.
-            post('/api/login', "email=" + this.email + "&password=" + this.password, {
+            if (this.rememberMe) {
+                localStorage.setItem('email', this.email);
+                localStorage.setItem('password', this.password);
+              } else {
+                localStorage.removeItem('email');
+                localStorage.removeItem('password');
+              }
+                axios.post('/api/login', "email=" + this.email + "&password=" + this.password, {
                 headers: {'content-type': 'application/x-www-form-urlencoded'}
             })
             .then(response => {

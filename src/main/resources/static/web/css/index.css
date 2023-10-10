@@ -8,7 +8,6 @@
 *{
     font-family: 'Niramit', sans-serif!important;
 }
-body {}
 
 .logo {
     width: 7rem;
@@ -109,7 +108,7 @@ span {
     font-weight: bold;
 }
 
-.button {
+.button1 {
     background: rgb(135, 255, 249);
     background: linear-gradient(324deg, rgba(135, 255, 249, 1) 0%, rgba(74, 112, 150, 1) 100%);
     border: rgb(135, 255, 249);
@@ -118,7 +117,7 @@ span {
     border-radius: 0.5rem;
 }
 
-.button:hover {
+.button1:hover {
     background: rgb(145, 200, 228);
     background: linear-gradient(324deg, rgba(145, 200, 228, 1) 0%, rgba(116, 155, 194, 1) 100%);
     border: rgb(145, 200, 228);
