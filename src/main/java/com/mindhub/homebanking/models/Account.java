@@ -96,7 +96,8 @@ public class Account {
         this.client = client;
     }
 
-    public void addtransactionSet( Transaction transaction){
+    public void
+    addtransactionSet( Transaction transaction){
         transaction.setAccount(this);
         this.transactionSet.add(transaction);
     }

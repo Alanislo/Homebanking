@@ -42,17 +42,19 @@ public class CardController {
     //
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> register(@RequestParam String type , @RequestParam String color, Authentication authentication) {
+        CardType cardType =  CardType.valueOf(type);
+        CardColor cardColor = CardColor.valueOf(color);
+        Client client = clientService.findByEmail(authentication.getName());
+        String cardNumber = "";
         if( !type.equals("CREDIT") && !type.equals("DEBIT") ){
             return new ResponseEntity<>("Select the type", HttpStatus.FORBIDDEN);
         }
         if( !color.equals("GOLD") && !color.equals("SILVER") && !color.equals("TITANIUM")){
             return new ResponseEntity<>("Select the color", HttpStatus.FORBIDDEN);
         }
-        CardType cardType =  CardType.valueOf(type);
-        CardColor cardColor = CardColor.valueOf(color);
-        Client client = clientService.findByEmail(authentication.getName());
-        //
-        String cardNumber = "";
+        if (client.getCards().stream().filter(card1 -> card1.getActive() == false &&  card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()) {
+            return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
+        }
         do {
             cardNumber = randomNumber();
         } while (cardService.findCardByNumber(cardNumber) != null);
@@ -60,9 +62,6 @@ public class CardController {
         do {
             cardCvv = randomCvv();
         } while (cardService.findByCvv(cardCvv) != null);
-        if (!client.getCards().stream().filter(card1 -> card1.getActive() == false &&  card1.getType().equals(type) && card1.getColor().equals(color)).collect(Collectors.toSet()).isEmpty()) {
-            return new ResponseEntity<>("It already exists", HttpStatus.FORBIDDEN);
-        }
         Card card = new Card(client.getFirstName()+" "+ client.getLastName(), cardColor, cardType, cardNumber,  cardCvv,LocalDate.now().plusYears(5),LocalDate.now(), true);
         client.addCards(card);
         cardService.save(card);
